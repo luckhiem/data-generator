@@ -51,7 +51,7 @@
               "entryPoints": [
                 {
                   "html": "./src/electronjs/index.html",
-                  "js": "./src/main/renderer.js",
+                  "js": "./src/main/renderer.jsx",
                   "name": "main_window"
                 }
               ]
@@ -63,6 +63,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/polyfill": "^7.10.4",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.10.1",
@@ -72,32 +73,27 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
     "@electron-forge/maker-zip": "^6.0.0-beta.51",
     "@electron-forge/plugin-webpack": "^6.0.0-beta.51",
+    "@kintone/kintone-js-sdk": "^0.4.0",
     "@kintone/rest-api-client": "^1.4.1",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
+    "antd": "^4.3.1",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
-    "core-js": "^3.0.1",
+    "core-js": "^2.6.11",
     "css-loader": "^3.5.3",
     "electron": "9.0.3",
     "eslint": "^6.8.0",
     "eslint-plugin-import": "^2.21.2",
-    "fork-ts-checker-webpack-plugin": "^3.1.1",
     "node-loader": "^0.6.0",
-    "style-loader": "^0.23.1",
-    "ts-loader": "^6.2.2",
-    "typescript": "^3.9.5",
-    "antd": "^4.3.1",
     "react-hot-loader": "^4.3.5",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "3.1.2",
-    "recharts": "^1.2.0"
+    "recharts": "^1.2.0",
+    "style-loader": "^0.23.1"
   },
   "dependencies": {
-    "@types/react": "^16.9.36",
-    "@types/react-dom": "^16.9.8",
     "electron-squirrel-startup": "^1.0.0",
+    "kintone-test-preparation": "file:../kintone-sdk-preparation-auto",
+    "raw-loader": "^4.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
   }

@@ -25,6 +25,11 @@ module.exports = [
     include: [resolve('src'), resolve('test')]
   },
   {
+    test: /\.jsx$/,
+    loader: 'babel-loader',
+    include: [resolve('src'), resolve('test')]
+  },
+  {
     test: /\.css$/,
     use: [
       'style-loader',
@@ -47,11 +52,11 @@ module.exports = [
       }]
   },
   {
-    test: /\.(tsx|js|ts)$/,
+    test: /\.(tsx|js|jsx)$/,
     use: [
       {
         loader: 'babel-loader',
       },
     ],
-  }
+  },
 ];

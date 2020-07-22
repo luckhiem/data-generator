@@ -1,4 +1,7 @@
-import {app, BrowserWindow} from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+const prepareTestData = require('kintone-test-preparation');
+const fs = require('fs');
+const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -49,3 +52,16 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+// Event listener for kintone
+ipcMain.on('request-to-kintone', async (event, arg) => {
+  try {
+    await prepareTestData.prepareTestData();
+    const data = await fs.readFileSync(path.join(__dirname, '../../resource/config.json'));
+    const log = await fs.readFileSync(path.join(__dirname, '../../resource/log.txt'), 'utf8');
+    await event.reply('kintone-reply', { status: 'DONE', config: JSON.parse(data), log: log });
+    return event;
+  } catch (err) {
+    console.log(err)
+    event.reply('kintone-reply', { status: 'ERROR' });
+  }
+});

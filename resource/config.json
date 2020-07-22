@@ -1,0 +1,189 @@
+{
+  "domain": "khiem-test-1.cybozu-dev.com",
+  "proxy": {
+    "host": "dc-ty3-squid-1.cb.local",
+    "ip": "10.224.136.40",
+    "port": 3128
+  },
+  "administrators": {
+    "username": "cybozu",
+    "password": "cybozu"
+  },
+  "orgInfo": {
+    "organizations": [
+      {
+        "id": "2",
+        "code": "newOrg",
+        "name": "newOrg",
+        "localName": "",
+        "localNameLocale": "ja",
+        "parentCode": "",
+        "description": ""
+      }
+    ]
+  },
+  "groupInfo": {
+    "id": "2",
+    "code": "newRole",
+    "name": "newRole",
+    "description": "This is a new role"
+  },
+  "users": {
+    "amount": 110,
+    "clone": [
+      {
+        "username": "user1",
+        "password": "user1",
+        "code": "user1",
+        "id": "8572"
+      },
+      {
+        "username": "user2",
+        "password": "user2",
+        "code": "user2",
+        "id": "8573"
+      },
+      {
+        "username": "user3",
+        "password": "user3",
+        "code": "user3",
+        "id": "8574"
+      },
+      {
+        "username": "user4",
+        "password": "user4",
+        "code": "user4",
+        "id": "8575"
+      },
+      {
+        "username": "user5",
+        "password": "user5",
+        "code": "user5",
+        "id": "8576"
+      },
+      {
+        "username": "user6",
+        "password": "user6",
+        "code": "user6",
+        "id": "8577"
+      },
+      {
+        "username": "user7",
+        "password": "user7",
+        "code": "user7",
+        "id": "8578"
+      },
+      {
+        "username": "user8",
+        "password": "user8",
+        "code": "user8",
+        "id": "8579"
+      },
+      {
+        "username": "user9",
+        "password": "user9",
+        "code": "user9",
+        "id": "8580"
+      },
+      {
+        "username": "user10",
+        "password": "user10",
+        "code": "user10",
+        "id": "8581"
+      },
+      {
+        "username": "user11",
+        "password": "user11",
+        "code": "user11",
+        "id": "8582"
+      },
+      {
+        "username": "user12",
+        "password": "user12",
+        "code": "user12",
+        "id": "8583"
+      },
+      {
+        "username": "user13",
+        "password": "user13",
+        "code": "user13",
+        "id": "8584"
+      },
+      {
+        "username": "user14",
+        "password": "user14",
+        "code": "user14",
+        "id": "8585"
+      },
+      {
+        "username": "user15",
+        "password": "user15",
+        "code": "user15",
+        "id": "8586"
+      },
+      {
+        "username": "user110",
+        "password": "user110",
+        "code": "user110",
+        "id": "8681"
+      }
+    ]
+  },
+  "apps": {
+    "appWithMultipleFields": {
+      "appId": "81",
+      "code": "APP81",
+      "name": "Initial App with multiple fields",
+      "description": "",
+      "createdAt": "2020-07-22T07:27:10.000Z",
+      "creator": {
+        "code": "cybozu",
+        "name": "cybozu"
+      },
+      "modifiedAt": "2020-07-22T07:27:31.000Z",
+      "modifier": {
+        "code": "cybozu",
+        "name": "cybozu"
+      },
+      "spaceId": "",
+      "threadId": "",
+      "fieldCodes": [
+        "Number",
+        "Number_Prohibit_Duplicate_Value",
+        "Text",
+        "Text_Update_Key",
+        "Text_Area",
+        "Date",
+        "Link",
+        "Attachment"
+      ],
+      "apiToken": {
+        "fullPermission": "TaoyuufLvUe2VsC3BHM51kj1RtzAjjZqPnzBlMx1",
+        "viewPermission": "r15Ss2M39kRF6OlxqNxnuTkscvUZ6b1mON4dREiu",
+        "noPermission": "KG6GRMudnaGM6pQfHjwQZsonqmoiUOuCeTvzvLEo"
+      },
+      "userAppPermissions": {
+        "userNotHaveAppManagementRight": "user2",
+        "userNotHavePermission": "user10",
+        "userNotHaveViewRecordsRight": "user10",
+        "userNotHaveAddRecordsRight": "user9",
+        "userNotHaveEditRecordsRight": "user8",
+        "userNotHaveDeleteRecordsRight": "user7"
+      },
+      "userRecordPermissions": {
+        "userNotHavePermission": "user6",
+        "userNotHaveViewRight": "user6",
+        "userNotHaveEditRight": "user5",
+        "userNotHaveDeleteRight": "user4"
+      },
+      "userFieldPermissions": {
+        "userNotHaveViewRightOnTextField": "user3",
+        "userNotHaveEditRightOnTextField": "user2"
+      },
+      "process": {
+        "states": [],
+        "actions": []
+      }
+    }
+  }
+}
