@@ -67,14 +67,26 @@ const TableProfile = () => {
                         type="primary"
                         style={{ marginRight: '5px' }}
                         onClick={() => {
+                            let index;
+                            let arg = {
+                                domain: '',
+                                username: '',
+                                password: '',
+                                profileId: ''
+                            }
                             const newProfile = [...profiles];
                             profiles.forEach((item, i) => {
                                 if (row.profileId === item.profileId) {
+                                    index = i;
                                     newProfile[i].status = 'PROCESSING';
                                 }
                             });
                             setProfiles(newProfile);
-                            ipcRenderer.send('request-to-kintone');
+                            arg.domain = newProfile[index].domain;
+                            arg.username = newProfile[index].username;
+                            arg.password = newProfile[index].password;
+                            arg.profileId = newProfile[index].profileId;
+                            ipcRenderer.send('request-to-kintone', arg);
                             const listener = (event, response) => {
                                 const newProfile = [...profiles];
                                 profiles.forEach((item, i) => {

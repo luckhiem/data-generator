@@ -35,112 +35,112 @@
         "username": "user1",
         "password": "user1",
         "code": "user1",
-        "id": "8572"
+        "id": "8902"
       },
       {
         "username": "user2",
         "password": "user2",
         "code": "user2",
-        "id": "8573"
+        "id": "8903"
       },
       {
         "username": "user3",
         "password": "user3",
         "code": "user3",
-        "id": "8574"
+        "id": "8904"
       },
       {
         "username": "user4",
         "password": "user4",
         "code": "user4",
-        "id": "8575"
+        "id": "8905"
       },
       {
         "username": "user5",
         "password": "user5",
         "code": "user5",
-        "id": "8576"
+        "id": "8906"
       },
       {
         "username": "user6",
         "password": "user6",
         "code": "user6",
-        "id": "8577"
+        "id": "8907"
       },
       {
         "username": "user7",
         "password": "user7",
         "code": "user7",
-        "id": "8578"
+        "id": "8908"
       },
       {
         "username": "user8",
         "password": "user8",
         "code": "user8",
-        "id": "8579"
+        "id": "8909"
       },
       {
         "username": "user9",
         "password": "user9",
         "code": "user9",
-        "id": "8580"
+        "id": "8910"
       },
       {
         "username": "user10",
         "password": "user10",
         "code": "user10",
-        "id": "8581"
+        "id": "8911"
       },
       {
         "username": "user11",
         "password": "user11",
         "code": "user11",
-        "id": "8582"
+        "id": "8912"
       },
       {
         "username": "user12",
         "password": "user12",
         "code": "user12",
-        "id": "8583"
+        "id": "8913"
       },
       {
         "username": "user13",
         "password": "user13",
         "code": "user13",
-        "id": "8584"
+        "id": "8914"
       },
       {
         "username": "user14",
         "password": "user14",
         "code": "user14",
-        "id": "8585"
+        "id": "8915"
       },
       {
         "username": "user15",
         "password": "user15",
         "code": "user15",
-        "id": "8586"
+        "id": "8916"
       },
       {
         "username": "user110",
         "password": "user110",
         "code": "user110",
-        "id": "8681"
+        "id": "9011"
       }
     ]
   },
   "apps": {
     "appWithMultipleFields": {
-      "appId": "81",
-      "code": "APP81",
+      "appId": "84",
+      "code": "",
       "name": "Initial App with multiple fields",
       "description": "",
-      "createdAt": "2020-07-22T07:27:10.000Z",
+      "createdAt": "2020-07-22T15:23:49.000Z",
       "creator": {
         "code": "cybozu",
         "name": "cybozu"
       },
-      "modifiedAt": "2020-07-22T07:27:31.000Z",
+      "modifiedAt": "2020-07-22T15:26:07.000Z",
       "modifier": {
         "code": "cybozu",
         "name": "cybozu"
@@ -157,11 +157,7 @@
         "Link",
         "Attachment"
       ],
-      "apiToken": {
-        "fullPermission": "TaoyuufLvUe2VsC3BHM51kj1RtzAjjZqPnzBlMx1",
-        "viewPermission": "r15Ss2M39kRF6OlxqNxnuTkscvUZ6b1mON4dREiu",
-        "noPermission": "KG6GRMudnaGM6pQfHjwQZsonqmoiUOuCeTvzvLEo"
-      },
+      "apiToken": {},
       "userAppPermissions": {
         "userNotHaveAppManagementRight": "user2",
         "userNotHavePermission": "user10",

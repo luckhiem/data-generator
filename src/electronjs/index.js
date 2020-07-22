@@ -55,6 +55,7 @@ app.on('activate', () => {
 // Event listener for kintone
 ipcMain.on('request-to-kintone', async (event, arg) => {
   try {
+    console.log(arg)
     await prepareTestData.prepareTestData();
     const data = await fs.readFileSync(path.join(__dirname, '../../resource/config.json'));
     const log = await fs.readFileSync(path.join(__dirname, '../../resource/log.txt'), 'utf8');
