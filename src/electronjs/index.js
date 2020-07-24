@@ -55,8 +55,19 @@ app.on('activate', () => {
 // Event listener for kintone
 ipcMain.on('request-to-kintone', async (event, arg) => {
   try {
-    console.log(arg)
-    await prepareTestData.prepareTestData();
+    const config = {
+      "domain": arg.domain,
+      "proxy": {
+        "host": "dc-ty3-squid-1.cb.local",
+        "ip": "10.224.136.40",
+        "port": 3128
+      },
+      "administrators": {
+        "username": arg.username,
+        "password": arg.password
+      }
+    }
+    await prepareTestData.prepareTestData(config);
     const data = await fs.readFileSync(path.join(__dirname, '../../resource/config.json'));
     const log = await fs.readFileSync(path.join(__dirname, '../../resource/log.txt'), 'utf8');
     await event.reply('kintone-reply', { status: 'DONE', config: JSON.parse(data), log: log });

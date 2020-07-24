@@ -72,13 +72,16 @@ const Profile = () => {
                         style={{ marginRight: '5px' }}
                         onClick={() => {
                             const newProfile = [...profiles];
+                            let index;
                             profiles.forEach((item, i) => {
                                 if (profileId === item.profileId) {
+                                    index = i;
                                     newProfile[i].status = 'PROCESSING';
                                 }
                             });
                             setProfiles(newProfile);
-                            ipcRenderer.send('request-to-kintone');
+                            const config = newProfile[index]
+                            ipcRenderer.send('request-to-kintone', config);
                             const listener = (event, response) => {
                                 const newProfile = [...profiles];
                                 let index;
