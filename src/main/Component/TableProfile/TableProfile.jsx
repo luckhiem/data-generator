@@ -103,6 +103,11 @@ const TableProfile = () => {
                         }}>
                         Generate</Button>
                     <Button
+                        type="submit"
+                        danger
+                        style={{ marginRight: '5px' }}>
+                        Teardown</Button>
+                    <Button
                         type="default"
                         style={{ marginRight: '5px' }}
                         onClick={() => {

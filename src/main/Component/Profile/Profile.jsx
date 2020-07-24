@@ -67,7 +67,7 @@ const Profile = () => {
                 title={"Profile " + dataProfile.name}
                 extra={[
                     <Button
-                        key="3"
+                        key="4"
                         type="primary"
                         style={{ marginRight: '5px' }}
                         onClick={() => {
@@ -100,6 +100,12 @@ const Profile = () => {
                             ipcRenderer.on('kintone-reply', listener);
                         }}>
                         Generate</Button>,
+                    <Button
+                        key="3"
+                        type="submit"
+                        danger
+                        style={{ marginRight: '5px' }}>
+                        Teardown</Button>,
                     <Button
                         key="2"
                         type="default"
