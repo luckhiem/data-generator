@@ -3,12 +3,12 @@ import 'antd/dist/antd.css';
 import { Input, Card } from 'antd';
 
 const Result = ({ profile }) => {
-    const profileCopy = JSON.parse(profile)
     const defaultValue = "This is default value";
     let configData;
     let logData;
 
-    if (profileCopy !== undefined) {
+    if (profile !== undefined) {
+        const profileCopy = JSON.parse(profile)
         configData = (profileCopy.config) ? profileCopy.config : defaultValue;
         logData = (profileCopy.log) ? profileCopy.log : defaultValue;
     }
