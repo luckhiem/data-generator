@@ -17,4 +17,6 @@ $ cd data-generator
 $ npm install
 ```
 ## Usage
+```
 $ npm run start
+```
