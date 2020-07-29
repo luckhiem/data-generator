@@ -129,7 +129,6 @@ const GenerateConfigForm = () => {
             </Row>
             <Row>
                 <Col span={24} style={{ textAlign: 'right' }}>
-                    <Button style={{ margin: '0 8px' }} type="primary" htmlType="submit">Use Default</Button>
                     <Button type="primary" htmlType="submit">Save</Button>
                     <Button style={{ margin: '0 8px' }} onClick={() => { form.resetFields() }}>Edit</Button>
                 </Col>

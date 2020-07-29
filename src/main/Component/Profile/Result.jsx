@@ -13,27 +13,27 @@ const Result = ({ profile }) => {
         configData = (profileCopy.config) ? profileCopy.config : defaultValue;
         logData = (profileCopy.log) ? profileCopy.log : defaultValue;
     }
-    const [key, setKey] = useState('tab3')
+    const [key, setKey] = useState('tab1')
     const tabList = [
         {
             key: 'tab1',
-            tab: 'JSON Config',
+            tab: 'Generate Config',
         },
         {
             key: 'tab2',
-            tab: 'Log Result',
+            tab: 'JSON Config',
         },
         {
             key: 'tab3',
-            tab: 'Generate Config',
+            tab: 'Log Result',
         },
     ];
 
 
     const contentList = {
-        tab1: <Input.TextArea disabled={true} autoSize={true} value={JSON.stringify(configData, null, 2)} style={{ color: "#000000" }}></Input.TextArea>,
-        tab2: <Input.TextArea disabled={true} autoSize={true} value={logData} style={{ color: "#000000" }}></Input.TextArea>,
-        tab3: <GenerateConfigForm/>,
+        tab1: <GenerateConfigForm/>,
+        tab2: <Input.TextArea disabled={true} autoSize={true} value={JSON.stringify(configData, null, 2)} style={{ color: "#000000" }}></Input.TextArea>,
+        tab3: <Input.TextArea disabled={true} autoSize={true} value={logData} style={{ color: "#000000" }}></Input.TextArea>,
     };
 
     return (
