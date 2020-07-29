@@ -1,5 +1,0 @@
-Setting up Test Environment for auto test
-Add new Org
-Add new Group
-Add new User
-Done Setup
