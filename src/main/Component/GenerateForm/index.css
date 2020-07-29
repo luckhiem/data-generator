@@ -1,0 +1,27 @@
+[data-theme='compact'] .ant-advanced-search-form,
+.ant-advanced-search-form {
+  padding: 24px;
+  background: #fbfbfb;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+[data-theme='compact'] .ant-advanced-search-form .ant-form-item,
+.ant-advanced-search-form .ant-form-item {
+  display: flex;
+}
+
+[data-theme='compact'] .ant-advanced-search-form .ant-form-item-control-wrapper,
+.ant-advanced-search-form .ant-form-item-control-wrapper {
+  flex: 1;
+}
+.ant-form {
+  max-width: none;
+}
+
+[data-theme="dark"] .ant-advanced-search-form  {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #434343;
+  padding: 24px;
+  border-radius: 2px;
+}
