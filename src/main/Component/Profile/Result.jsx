@@ -7,9 +7,11 @@ const Result = ({ profile }) => {
     const defaultValue = "This is default value";
     let configData;
     let logData;
+    let profileIdCopy
 
     if (profile !== undefined) {
         const profileCopy = JSON.parse(profile)
+        profileIdCopy = profileCopy.profileId
         configData = (profileCopy.config) ? profileCopy.config : defaultValue;
         logData = (profileCopy.log) ? profileCopy.log : defaultValue;
     }
@@ -31,7 +33,7 @@ const Result = ({ profile }) => {
 
 
     const contentList = {
-        tab1: <GenerateConfigForm/>,
+        tab1: <GenerateConfigForm profileId={profileIdCopy}/>,
         tab2: <Input.TextArea disabled={true} autoSize={true} value={JSON.stringify(configData, null, 2)} style={{ color: "#000000" }}></Input.TextArea>,
         tab3: <Input.TextArea disabled={true} autoSize={true} value={logData} style={{ color: "#000000" }}></Input.TextArea>,
     };

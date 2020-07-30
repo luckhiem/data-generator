@@ -5,46 +5,7 @@ import './index.css';
 import { Form, Row, Col, Switch, Button, Input, InputNumber, Checkbox } from 'antd';
 
 
-const CheckboxApp = () => {
-    return (
-        <Checkbox.Group style={{ width: '100%' }} onChange={(value) => { console.log('checkbox', value) }}>
-            <Row>
-                <Col span={12}>
-                    <Checkbox value="appInGuestSpace">App In Guest Space</Checkbox>
-                </Col>
-                <Col span={12}>
-                    <Checkbox value="appInSpace">App In Space</Checkbox>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={12}>
-                    <Checkbox value="appWithMultipleFields">App With Multiple Fields</Checkbox>
-                </Col>
-                <Col span={12}>
-                    <Checkbox value="appWithRequiredFields">App With Required Fields</Checkbox>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={12}>
-                    <Checkbox value="appWithUniqueFields">App With Unique Fields</Checkbox>
-                </Col>
-                <Col span={12}>
-                    <Checkbox value="appWithoutField">App Without Field</Checkbox>
-                </Col>
-            </Row>
-            <Row>
-                <Col span={12}>
-                    <Checkbox value="appWithThoroughFields">App With Thorough Fields</Checkbox>
-                </Col>
-                <Col span={12}>
-                    <Checkbox value="appWithProcess">App With Process</Checkbox>
-                </Col>
-            </Row>
-        </Checkbox.Group>
-    )
-}
-
-const GenerateConfigForm = () => {
+const GenerateConfigForm = (profileIdCopy) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [isVisibleApp, setVisibleApp] = useState('none');
     const [isVisibleSpace, setVisibleSpace] = useState('none');
@@ -55,11 +16,13 @@ const GenerateConfigForm = () => {
         generateGroup: true,
         generateUser: true,
         generateOrg: true,
-        app_name: '',
-        app_numbers: '',
-        app_types: '',
-        space_name: '',
-        space_numbers: ''
+        generateApp: false,
+        generateSpace: false,
+        appName: '',
+        appNumbers: '',
+        appTypes: '',
+        spaceName: '',
+        spaceTypes: ''
     }
 
     const formItemLayout = {
@@ -71,10 +34,6 @@ const GenerateConfigForm = () => {
         },
     };
 
-    const onFinish = values => {
-        console.log('Received values of form: ', values);
-    };
-
     return (
         <Form
             form={form}
@@ -82,20 +41,19 @@ const GenerateConfigForm = () => {
             name="advanced_search"
             className="ant-advanced-search-form"
             initialValues={GenerateConfig}
-            onFinish={onFinish}
         >
             <Row>
                 <Col span={16}>
-                    <Form.Item label='Generate organization'>
+                    <Form.Item label='Generate organization' name="generateOrg">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate group'>
+                    <Form.Item label='Generate group' name="generateGroup">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate users'>
+                    <Form.Item label='Generate users' name="generateUser">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate app'>
+                    <Form.Item label='Generate app' name="generateApp">
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
@@ -109,10 +67,10 @@ const GenerateConfigForm = () => {
                                 }
                             }} />
                     </Form.Item>
-                    <Form.Item label='App Name' name="app_name" style={{ display: isVisibleApp }}>
+                    <Form.Item label='App Name' name="appName" style={{ display: isVisibleApp }}>
                         <Input placeholder="Input App Name" />
                     </Form.Item>
-                    <Form.Item label='Select App Generate' name="app_types" style={{ display: isVisibleApp }}>
+                    <Form.Item label='Select App Generate' name="appTypes" style={{ display: isVisibleApp }}>
                         <Checkbox.Group style={{ width: '100%' }}>
                             <Row>
                                 <Col span={12}>
@@ -148,10 +106,10 @@ const GenerateConfigForm = () => {
                             </Row>
                         </Checkbox.Group>
                     </Form.Item>
-                    <Form.Item label='Number of Apps' name="app_numbers" style={{ display: isVisibleApp }}>
+                    <Form.Item label='Number of Apps' name="appNumbers" style={{ display: isVisibleApp }}>
                         <InputNumber />
                     </Form.Item>
-                    <Form.Item label='Generate space'>
+                    <Form.Item label='Generate space' name="generateSpace">
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
@@ -165,11 +123,20 @@ const GenerateConfigForm = () => {
                                 }
                             }} />
                     </Form.Item>
-                    <Form.Item label='Space Name' name="space_name" style={{ display: isVisibleSpace }}>
+                    <Form.Item label='Space Name' name="spaceName" style={{ display: isVisibleSpace }}>
                         <Input placeholder="Input Space Name" />
                     </Form.Item>
-                    <Form.Item label='Number of spaces' name="space_numbers" style={{ display: isVisibleSpace }}>
-                        <InputNumber />
+                    <Form.Item label='Select Space Type' name="spaceTypes" style={{ display: isVisibleSpace }}>
+                        <Checkbox.Group style={{ width: '100%' }}>
+                            <Row>
+                                <Col span={12}>
+                                    <Checkbox value="Guest Space">Guest Space</Checkbox>
+                                </Col>
+                                <Col span={12}>
+                                    <Checkbox value="Normal Space">Normal Space</Checkbox>
+                                </Col>
+                            </Row>
+                        </Checkbox.Group>
                     </Form.Item>
                 </Col>
             </Row>
@@ -178,10 +145,17 @@ const GenerateConfigForm = () => {
                     <Button type="primary" htmlType="submit" onClick={() => {
                         form.validateFields()
                             .then((values) => {
-                                console.log('value', values)
+                                const newProfile = [...profiles];
+                                profiles.forEach((item, i) => {
+                                    if (profileIdCopy.profileId === item.profileId) {
+                                        newProfile[i].generateConfig = values;
+                                    }
+                                });
+                                setProfiles(newProfile);
+                                window.localStorage.setItem('profiles', JSON.stringify(newProfile));
                             })
                             .catch((error) => {
-                                console.log(JSON.stringify(error))
+                                console.log(error)
                             })
                     }}>Save</Button>
                     <Button style={{ margin: '0 8px' }}>Edit</Button>

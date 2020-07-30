@@ -58,6 +58,7 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
             if (profileId === undefined || profileId === null) {
               values.profileId = values.name + '-' + Math.floor(Math.random() * 999999);
               values.status = "NEW";
+              values.generateConfig = "";
               newProfiles = [...profiles, values];
             }
             setProfiles(newProfiles);
@@ -68,7 +69,6 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
             console.log('Validate Failed:', info);
           });
       }}
-      forceRender
     >
       <Form
         {...formItemLayout}
