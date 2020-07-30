@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
 import './index.css';
@@ -12,7 +12,7 @@ const GenerateConfigForm = (profileIdCopy) => {
     const [switchAppChecked, setSwitchAppChecked] = useState(false);
     const [switchSpaceChecked, setSwitchSpaceChecked] = useState(false)
     const [form] = Form.useForm();
-    const GenerateConfig = {
+    let GenerateConfig = {
         generateGroup: true,
         generateUser: true,
         generateOrg: true,
@@ -34,6 +34,12 @@ const GenerateConfigForm = (profileIdCopy) => {
         },
     };
 
+
+    const result = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    if (result[0].generateConfig !== "") {
+        GenerateConfig = result[0].generateConfig;
+    }
+
     return (
         <Form
             form={form}
@@ -44,16 +50,16 @@ const GenerateConfigForm = (profileIdCopy) => {
         >
             <Row>
                 <Col span={16}>
-                    <Form.Item label='Generate organization' name="generateOrg">
+                    <Form.Item label='Generate organization' name="generateOrg" valuePropName="checked">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate group' name="generateGroup">
+                    <Form.Item label='Generate group' name="generateGroup" valuePropName="checked">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate users' name="generateUser">
+                    <Form.Item label='Generate users' name="generateUser" valuePropName="checked">
                         <Switch checkedChildren="YES" unCheckedChildren="NO" defaultChecked disabled={true} />
                     </Form.Item>
-                    <Form.Item label='Generate app' name="generateApp">
+                    <Form.Item label='Generate app' name="generateApp" valuePropName="checked">
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
@@ -109,7 +115,7 @@ const GenerateConfigForm = (profileIdCopy) => {
                     <Form.Item label='Number of Apps' name="appNumbers" style={{ display: isVisibleApp }}>
                         <InputNumber />
                     </Form.Item>
-                    <Form.Item label='Generate space' name="generateSpace">
+                    <Form.Item label='Generate space' name="generateSpace" valuePropName="checked">
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
