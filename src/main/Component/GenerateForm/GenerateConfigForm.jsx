@@ -9,15 +9,15 @@ const GenerateConfigForm = (profileIdCopy) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [isVisibleApp, setVisibleApp] = useState('none');
     const [isVisibleSpace, setVisibleSpace] = useState('none');
-    const [switchAppChecked, setSwitchAppChecked] = useState(false);
-    const [switchSpaceChecked, setSwitchSpaceChecked] = useState(false)
+    const [switchAppChecked, setSwitchAppChecked] = useState();
+    const [switchSpaceChecked, setSwitchSpaceChecked] = useState()
     const [form] = Form.useForm();
     let GenerateConfig = {
         generateGroup: true,
         generateUser: true,
         generateOrg: true,
-        generateApp: false,
-        generateSpace: false,
+        generateApp: '',
+        generateSpace: '',
         appName: '',
         appNumbers: '',
         appTypes: '',
@@ -39,6 +39,15 @@ const GenerateConfigForm = (profileIdCopy) => {
     if (result[0].generateConfig !== "") {
         GenerateConfig = result[0].generateConfig;
     }
+
+    useEffect(() => {
+        if (result[0].generateConfig.generateApp === true) {
+            setVisibleApp('flex')
+        }
+        if (result[0].generateConfig.generateSpace === true) {
+            setVisibleSpace('flex')
+        }
+    }, [profiles])
 
     return (
         <Form
@@ -63,9 +72,7 @@ const GenerateConfigForm = (profileIdCopy) => {
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
-                            checked={switchAppChecked}
                             onChange={(value) => {
-                                setSwitchAppChecked(value)
                                 if (value === true) {
                                     setVisibleApp('flex')
                                 } else {
@@ -119,9 +126,7 @@ const GenerateConfigForm = (profileIdCopy) => {
                         <Switch
                             checkedChildren="YES"
                             unCheckedChildren="NO"
-                            checked={switchSpaceChecked}
                             onChange={(value) => {
-                                setSwitchSpaceChecked(value)
                                 if (value === true) {
                                     setVisibleSpace('flex')
                                 } else {
