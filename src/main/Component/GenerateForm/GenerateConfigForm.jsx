@@ -7,10 +7,10 @@ import { Form, Row, Col, Switch, Button, Input, InputNumber, Checkbox } from 'an
 
 const GenerateConfigForm = (profileIdCopy) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
+    const [isDisable, setDisable] = useState(true);
+    const [isVisibleSaveBtn, setVisibleSaveBtn] = useState('none');
     const [isVisibleApp, setVisibleApp] = useState('none');
     const [isVisibleSpace, setVisibleSpace] = useState('none');
-    const [switchAppChecked, setSwitchAppChecked] = useState();
-    const [switchSpaceChecked, setSwitchSpaceChecked] = useState()
     const [form] = Form.useForm();
     let GenerateConfig = {
         generateGroup: true,
@@ -34,10 +34,13 @@ const GenerateConfigForm = (profileIdCopy) => {
         },
     };
 
+    let result;
 
-    const result = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
-    if (result[0].generateConfig !== "") {
-        GenerateConfig = result[0].generateConfig;
+    if (profileIdCopy !== undefined) {
+        result = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+        if (result[0].generateConfig !== "") {
+            GenerateConfig = result[0].generateConfig;
+        }
     }
 
     useEffect(() => {
@@ -78,13 +81,15 @@ const GenerateConfigForm = (profileIdCopy) => {
                                 } else {
                                     setVisibleApp('none')
                                 }
-                            }} />
+                            }}
+                            disabled={isDisable}
+                        />
                     </Form.Item>
                     <Form.Item label='App Name' name="appName" style={{ display: isVisibleApp }}>
-                        <Input placeholder="Input App Name" />
+                        <Input placeholder="Input App Name" disabled={isDisable} />
                     </Form.Item>
                     <Form.Item label='Select App Generate' name="appTypes" style={{ display: isVisibleApp }}>
-                        <Checkbox.Group style={{ width: '100%' }}>
+                        <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
                             <Row>
                                 <Col span={12}>
                                     <Checkbox value="appInGuestSpace">App In Guest Space</Checkbox>
@@ -120,7 +125,7 @@ const GenerateConfigForm = (profileIdCopy) => {
                         </Checkbox.Group>
                     </Form.Item>
                     <Form.Item label='Number of Apps' name="appNumbers" style={{ display: isVisibleApp }}>
-                        <InputNumber />
+                        <InputNumber disabled={isDisable} />
                     </Form.Item>
                     <Form.Item label='Generate space' name="generateSpace" valuePropName="checked">
                         <Switch
@@ -132,13 +137,15 @@ const GenerateConfigForm = (profileIdCopy) => {
                                 } else {
                                     setVisibleSpace('none')
                                 }
-                            }} />
+                            }}
+                            disabled={isDisable}
+                        />
                     </Form.Item>
                     <Form.Item label='Space Name' name="spaceName" style={{ display: isVisibleSpace }}>
-                        <Input placeholder="Input Space Name" />
+                        <Input placeholder="Input Space Name" disabled={isDisable} />
                     </Form.Item>
                     <Form.Item label='Select Space Type' name="spaceTypes" style={{ display: isVisibleSpace }}>
-                        <Checkbox.Group style={{ width: '100%' }}>
+                        <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
                             <Row>
                                 <Col span={12}>
                                     <Checkbox value="Guest Space">Guest Space</Checkbox>
@@ -153,23 +160,31 @@ const GenerateConfigForm = (profileIdCopy) => {
             </Row>
             <Row>
                 <Col span={24} style={{ textAlign: 'right' }}>
-                    <Button type="primary" htmlType="submit" onClick={() => {
-                        form.validateFields()
-                            .then((values) => {
-                                const newProfile = [...profiles];
-                                profiles.forEach((item, i) => {
-                                    if (profileIdCopy.profileId === item.profileId) {
-                                        newProfile[i].generateConfig = values;
-                                    }
-                                });
-                                setProfiles(newProfile);
-                                window.localStorage.setItem('profiles', JSON.stringify(newProfile));
-                            })
-                            .catch((error) => {
-                                console.log(error)
-                            })
-                    }}>Save</Button>
-                    <Button style={{ margin: '0 8px' }}>Edit</Button>
+                    <Button
+                        type="primary"
+                        style={{ display: isVisibleSaveBtn }}
+                        onClick={() => {
+                            form.validateFields()
+                                .then((values) => {
+                                    const newProfile = [...profiles];
+                                    profiles.forEach((item, i) => {
+                                        if (profileIdCopy.profileId === item.profileId) {
+                                            newProfile[i].generateConfig = values;
+                                        }
+                                    });
+                                    setProfiles(newProfile);
+                                    window.localStorage.setItem('profiles', JSON.stringify(newProfile));
+                                    setDisable(true);
+                                    setVisibleSaveBtn('none');
+                                })
+                                .catch((error) => {
+                                    console.log(error)
+                                })
+                        }}>Save</Button>
+                    <Button style={{ margin: '0 8px' }} onClick={() => {
+                        setVisibleSaveBtn('inline')
+                        setDisable(false)
+                    }}>Edit</Button>
                 </Col>
             </Row>
         </Form>
