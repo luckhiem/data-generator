@@ -148,10 +148,10 @@ const GenerateConfigForm = (profileIdCopy) => {
                         <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
                             <Row>
                                 <Col span={12}>
-                                    <Checkbox value="Guest Space">Guest Space</Checkbox>
+                                    <Checkbox value="guestSpace">Guest Space</Checkbox>
                                 </Col>
                                 <Col span={12}>
-                                    <Checkbox value="Normal Space">Normal Space</Checkbox>
+                                    <Checkbox value="normalSpace">Normal Space</Checkbox>
                                 </Col>
                             </Row>
                         </Checkbox.Group>
