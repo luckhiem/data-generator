@@ -23,7 +23,8 @@ const GenerateConfigForm = (profileIdCopy) => {
         appTypes: '',
         spaceName: '',
         spaceTypes: ''
-    }
+    };
+    let result;
 
     const formItemLayout = {
         labelCol: {
@@ -34,21 +35,22 @@ const GenerateConfigForm = (profileIdCopy) => {
         },
     };
 
-    let result;
-
-    if (profileIdCopy !== undefined) {
-        result = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    result = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    if (result.length !== 0) {
         if (result[0].generateConfig !== "") {
             GenerateConfig = result[0].generateConfig;
         }
     }
 
+
     useEffect(() => {
-        if (result[0].generateConfig.generateApp === true) {
-            setVisibleApp('flex')
-        }
-        if (result[0].generateConfig.generateSpace === true) {
-            setVisibleSpace('flex')
+        if (result.length !== 0) {
+            if (result[0].generateConfig.generateApp === true) {
+                setVisibleApp('flex')
+            }
+            if (result[0].generateConfig.generateSpace === true) {
+                setVisibleSpace('flex')
+            }
         }
     }, [profiles])
 
@@ -148,10 +150,10 @@ const GenerateConfigForm = (profileIdCopy) => {
                         <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
                             <Row>
                                 <Col span={12}>
-                                    <Checkbox value="Guest Space">Guest Space</Checkbox>
+                                    <Checkbox value="guestSpace">Guest Space</Checkbox>
                                 </Col>
                                 <Col span={12}>
-                                    <Checkbox value="Normal Space">Normal Space</Checkbox>
+                                    <Checkbox value="normalSpace">Normal Space</Checkbox>
                                 </Col>
                             </Row>
                         </Checkbox.Group>
