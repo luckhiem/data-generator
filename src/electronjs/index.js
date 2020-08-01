@@ -74,6 +74,6 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
     return event;
   } catch (err) {
     console.log(err)
-    event.reply('kintone-reply', { status: 'ERROR' });
+    event.reply('kintone-reply', { status: err });
   }
 });
