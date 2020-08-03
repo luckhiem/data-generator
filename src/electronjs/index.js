@@ -67,10 +67,8 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
         "password": arg.password
       }
     }
-    await prepareTestData.prepareTestData(config);
-    const data = await fs.readFileSync(path.join(__dirname, '../../resource/config.json'));
-    const log = await fs.readFileSync(path.join(__dirname, '../../resource/log.txt'), 'utf8');
-    await event.reply('kintone-reply', { status: 'DONE', config: JSON.parse(data), log: log });
+    const results = await prepareTestData.prepareTestData(config);
+    await event.reply('kintone-reply', { status: 'DONE', config: results.configObj});
     return event;
   } catch (err) {
     console.log(err)

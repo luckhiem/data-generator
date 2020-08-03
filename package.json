@@ -92,7 +92,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "kintone-test-preparation": "git+https://github.com/luckhiem/data-generator-server.git",
+    "kintone-test-preparation": "file:../data-generator-server",
     "raw-loader": "^4.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
