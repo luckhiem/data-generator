@@ -49,6 +49,7 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
                   profile.username = values.username;
                   profile.password = values.password;
                   profile.status = profile.status;
+                  profile.generateConfig = profile.generateConfig;
                   return profile;
                 }
                 return profile;
@@ -58,7 +59,18 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
             if (profileId === undefined || profileId === null) {
               values.profileId = values.name + '-' + Math.floor(Math.random() * 999999);
               values.status = "NEW";
-              values.generateConfig = "";
+              values.generateConfig = {
+                  generateGroup: true,
+                  generateUser: true,
+                  generateOrg: true,
+                  generateApp: '',
+                  generateSpace: '',
+                  appName: '',
+                  appNumbers: '',
+                  appTypes: '',
+                  spaceName: '',
+                  spaceTypes: ''
+              };
               newProfiles = [...profiles, values];
             }
             setProfiles(newProfiles);

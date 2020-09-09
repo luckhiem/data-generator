@@ -65,7 +65,8 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
       "administrators": {
         "username": arg.username,
         "password": arg.password
-      }
+      },
+      "generateConfig": arg.generateConfig
     }
     const results = await prepareTestData.prepareTestData(config);
     await event.reply('kintone-reply', { status: 'DONE', config: results.configObj});
