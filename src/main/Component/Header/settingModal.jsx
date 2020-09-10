@@ -60,16 +60,11 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
               values.profileId = values.name + '-' + Math.floor(Math.random() * 999999);
               values.status = "NEW";
               values.generateConfig = {
-                  generateGroup: true,
-                  generateUser: true,
-                  generateOrg: true,
-                  generateApp: '',
-                  generateSpace: '',
-                  appName: '',
-                  appNumbers: '',
-                  appTypes: '',
-                  spaceName: '',
-                  spaceTypes: ''
+                generateGroup: true,
+                generateUser: true,
+                generateOrg: true,
+                generateApp: false,
+                generateSpace: false
               };
               newProfiles = [...profiles, values];
             }
