@@ -6,7 +6,6 @@ import { Table, Input, InputNumber, Popconfirm, Form, Button } from 'antd';
 
 const originData = [];
 
-
 for (let i = 0; i < 1; i++) {
     originData.push({
         key: i.toString(),
@@ -54,16 +53,24 @@ const EditableCell = ({
 const SpaceConfigTable = (profileIdCopy) => {
     const [form] = Form.useForm();
     const { profiles, setProfiles } = useContext(ProfileContext);
-    const [data, setData] = useState(originData);
     const [editingKey, setEditingKey] = useState('');
+
+    let profileConfigSpace = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    let initialData;
+    if(profileConfigSpace[0].configSpace !== undefined){
+        initialData = profileConfigSpace[0].configSpace
+    } else {
+        initialData = originData
+    }
+    const [data, setData] = useState(initialData);
 
     const isEditing = record => record.key === editingKey;
 
     const edit = record => {
         form.setFieldsValue({
-            appName: '',
+            spaceName: '',
             amount: '',
-            appType: '',
+            spaceType: '',
             ...record,
         });
         setEditingKey(record.key);
@@ -102,9 +109,9 @@ const SpaceConfigTable = (profileIdCopy) => {
     const handleAdd = () => {
         const newData = {
             key: data.length + 1,
-            appName: `Edrward`,
+            spaceName: `Edrward`,
             amount: 32,
-            appType: `London Park no.`,
+            spaceType: `London Park no.`,
         };
         setData([...data, newData]);
     };
@@ -117,7 +124,6 @@ const SpaceConfigTable = (profileIdCopy) => {
             }
         });
         setProfiles(profilesCopy);
-        console.log('configSpace', profilesCopy)
     }, [data])
 
     const columns = [
