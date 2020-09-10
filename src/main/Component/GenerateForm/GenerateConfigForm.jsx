@@ -3,13 +3,14 @@ import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Form, Row, Col, Switch, Button, Input, InputNumber, Checkbox } from 'antd';
-
+import AppConfigTable from './AppTableConfig.jsx';
+import SpaceConfigTable from './SpaceTableConfig';
 
 const GenerateConfigForm = (profileIdCopy) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [isDisable, setDisable] = useState(true);
     const [isVisibleSaveBtn, setVisibleSaveBtn] = useState('none');
-    const [isVisibleApp, setVisibleApp] = useState('none');
+    const [isVisibleApp, setVisibleApp] = useState('flex');
     const [isVisibleSpace, setVisibleSpace] = useState('none');
     const [form] = Form.useForm();
     let GenerateConfig = {
@@ -28,10 +29,10 @@ const GenerateConfigForm = (profileIdCopy) => {
 
     const formItemLayout = {
         labelCol: {
-            span: 8,
+            span: 4,
         },
         wrapperCol: {
-            span: 16,
+            span: 20,
         },
     };
 
@@ -41,7 +42,6 @@ const GenerateConfigForm = (profileIdCopy) => {
             GenerateConfig = result[0].generateConfig;
         }
     }
-
 
     useEffect(() => {
         if (result.length !== 0) {
@@ -87,48 +87,18 @@ const GenerateConfigForm = (profileIdCopy) => {
                             disabled={isDisable}
                         />
                     </Form.Item>
-                    <Form.Item label='App Name' name="appName" style={{ display: isVisibleApp }}>
-                        <Input placeholder="Input App Name" disabled={isDisable} />
+                </Col>
+
+            </Row>
+            <Row>
+                <Col span={16}>
+                    <Form.Item label='Config App' style={{ display: isVisibleApp }}>
+                        <AppConfigTable profileId={profileIdCopy.profileId} />
                     </Form.Item>
-                    <Form.Item label='Select App Generate' name="appTypes" style={{ display: isVisibleApp }}>
-                        <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
-                            <Row>
-                                <Col span={12}>
-                                    <Checkbox value="appInGuestSpace">App In Guest Space</Checkbox>
-                                </Col>
-                                <Col span={12}>
-                                    <Checkbox value="appInSpace">App In Space</Checkbox>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}>
-                                    <Checkbox value="appWithMultipleFields">App With Multiple Fields</Checkbox>
-                                </Col>
-                                <Col span={12}>
-                                    <Checkbox value="appWithRequiredFields">App With Required Fields</Checkbox>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}>
-                                    <Checkbox value="appWithUniqueFields">App With Unique Fields</Checkbox>
-                                </Col>
-                                <Col span={12}>
-                                    <Checkbox value="appWithoutField">App Without Field</Checkbox>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col span={12}>
-                                    <Checkbox value="appWithThoroughFields">App With Thorough Fields</Checkbox>
-                                </Col>
-                                <Col span={12}>
-                                    <Checkbox value="appWithProcess">App With Process</Checkbox>
-                                </Col>
-                            </Row>
-                        </Checkbox.Group>
-                    </Form.Item>
-                    <Form.Item label='Number of Apps' name="appNumbers" style={{ display: isVisibleApp }}>
-                        <InputNumber disabled={isDisable} />
-                    </Form.Item>
+                </Col>
+            </Row>
+            <Row>
+                <Col span={16}>
                     <Form.Item label='Generate space' name="generateSpace" valuePropName="checked">
                         <Switch
                             checkedChildren="YES"
@@ -143,20 +113,12 @@ const GenerateConfigForm = (profileIdCopy) => {
                             disabled={isDisable}
                         />
                     </Form.Item>
-                    <Form.Item label='Space Name' name="spaceName" style={{ display: isVisibleSpace }}>
-                        <Input placeholder="Input Space Name" disabled={isDisable} />
-                    </Form.Item>
-                    <Form.Item label='Select Space Type' name="spaceTypes" style={{ display: isVisibleSpace }}>
-                        <Checkbox.Group style={{ width: '100%' }} disabled={isDisable}>
-                            <Row>
-                                <Col span={12}>
-                                    <Checkbox value="guestSpace">Guest Space</Checkbox>
-                                </Col>
-                                <Col span={12}>
-                                    <Checkbox value="normalSpace">Normal Space</Checkbox>
-                                </Col>
-                            </Row>
-                        </Checkbox.Group>
+                </Col>
+            </Row>
+            <Row>
+                <Col span={16}>
+                    <Form.Item label='Config Space' style={{ display: isVisibleApp }}>
+                        <SpaceConfigTable profileId={profileIdCopy.profileId} />
                     </Form.Item>
                 </Col>
             </Row>
@@ -174,6 +136,7 @@ const GenerateConfigForm = (profileIdCopy) => {
                                             newProfile[i].generateConfig = values;
                                         }
                                     });
+                                    console.log('Table', newProfile)
                                     setProfiles(newProfile);
                                     window.localStorage.setItem('profiles', JSON.stringify(newProfile));
                                     setDisable(true);
