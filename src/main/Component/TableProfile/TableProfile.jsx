@@ -73,7 +73,10 @@ const TableProfile = () => {
                                 username: '',
                                 password: '',
                                 profileId: '',
-                                generateConfig: ''
+                                generateConfig: '',
+                                configApp: '',
+                                configSpace: ''
+
                             }
                             const newProfile = [...profiles];
                             profiles.forEach((item, i) => {
@@ -88,7 +91,9 @@ const TableProfile = () => {
                             arg.username = newProfile[index].username;
                             arg.password = newProfile[index].password;
                             arg.profileId = newProfile[index].profileId;
-                            arg.generateConfig = newProfile[index].generateConfig
+                            arg.generateConfig = newProfile[index].generateConfig;
+                            arg.configApp = newProfile[index].configApp;
+                            arg.configSpace = newProfile[index].configSpace;
                             ipcRenderer.send('request-to-kintone', arg);
                             const listener = (event, response) => {
                                 const newProfile = [...profiles];
