@@ -55,12 +55,15 @@ const AppConfigTable = (profileIdCopy) => {
     const [form] = Form.useForm();
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [editingKey, setEditingKey] = useState('');
-    let profileConfigApp = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
     let initialData;
-    if(profileConfigApp[0].configApp !== undefined){
-        initialData = profileConfigApp[0].configApp
-    } else {
-        initialData = originData
+    let profileConfigApp = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    console.log('profileConfigApp', profileConfigApp)
+    if (profileConfigApp.length > 0) {
+        if(profileConfigApp[0].configApp !== undefined){
+            initialData = profileConfigApp[0].configApp
+        } else {
+            initialData = originData
+        }
     }
     const [data, setData] = useState(initialData);
     const isEditing = record => record.key === editingKey;

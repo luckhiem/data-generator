@@ -57,10 +57,12 @@ const SpaceConfigTable = (profileIdCopy) => {
 
     let profileConfigSpace = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
     let initialData;
-    if(profileConfigSpace[0].configSpace !== undefined){
-        initialData = profileConfigSpace[0].configSpace
-    } else {
-        initialData = originData
+    if (profileConfigSpace.length > 0) {
+        if (profileConfigSpace[0].configSpace !== undefined) {
+            initialData = profileConfigSpace[0].configSpace
+        } else {
+            initialData = originData
+        }
     }
     const [data, setData] = useState(initialData);
 
@@ -190,28 +192,28 @@ const SpaceConfigTable = (profileIdCopy) => {
         };
     });
     return (
-            <Form form={form} component={false}>
-                <Button
-                    onClick={handleAdd}
-                    type="submit"
-                    style={{
-                        marginBottom: 16,
-                    }}>Add a row</Button>
-                <Table
-                    components={{
-                        body: {
-                            cell: EditableCell,
-                        },
-                    }}
-                    bordered
-                    dataSource={data}
-                    columns={mergedColumns}
-                    rowClassName="editable-row-space"
-                    pagination={{
-                        onChange: cancel,
-                    }}
-                />
-            </Form>
+        <Form form={form} component={false}>
+            <Button
+                onClick={handleAdd}
+                type="submit"
+                style={{
+                    marginBottom: 16,
+                }}>Add a row</Button>
+            <Table
+                components={{
+                    body: {
+                        cell: EditableCell,
+                    },
+                }}
+                bordered
+                dataSource={data}
+                columns={mergedColumns}
+                rowClassName="editable-row-space"
+                pagination={{
+                    onChange: cancel,
+                }}
+            />
+        </Form>
     );
 };
 export default SpaceConfigTable
