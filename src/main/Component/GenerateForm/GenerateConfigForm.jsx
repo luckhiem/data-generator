@@ -136,7 +136,6 @@ const GenerateConfigForm = (profileIdCopy) => {
                                             newProfile[i].generateConfig = values;
                                         }
                                     });
-                                    console.log('Table', newProfile)
                                     setProfiles(newProfile);
                                     window.localStorage.setItem('profiles', JSON.stringify(newProfile));
                                     setDisable(true);
