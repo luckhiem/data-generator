@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Form, Row, Col, Switch, Button, Input, InputNumber, Checkbox, Divider } from 'antd';
+import { Form, Row, Col, Switch, Button} from 'antd';
 import AppConfigTable from './AppTableConfig.jsx';
 import SpaceConfigTable from './SpaceTableConfig';
 
@@ -10,8 +10,8 @@ const GenerateConfigForm = (profileIdCopy) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [isDisable, setDisable] = useState(true);
     const [isVisibleSaveBtn, setVisibleSaveBtn] = useState('none');
-    const [isVisibleApp, setVisibleApp] = useState('flex');
-    const [isVisibleSpace, setVisibleSpace] = useState('flex');
+    const [isVisibleApp, setVisibleApp] = useState('none');
+    const [isVisibleSpace, setVisibleSpace] = useState('none');
     const [form] = Form.useForm();
     let GenerateConfig = {
         generateGroup: true,
@@ -85,7 +85,6 @@ const GenerateConfigForm = (profileIdCopy) => {
                                         setVisibleApp('none')
                                     }
                                 }}
-                                defaultChecked
                             />
                         </Form.Item>
                     </Col>
@@ -111,7 +110,6 @@ const GenerateConfigForm = (profileIdCopy) => {
                                         setVisibleSpace('none')
                                     }
                                 }}
-                                defaultChecked
                             />
                         </Form.Item>
                     </Col>

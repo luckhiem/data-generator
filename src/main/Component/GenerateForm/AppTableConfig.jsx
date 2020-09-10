@@ -54,9 +54,15 @@ const EditableCell = ({
 const AppConfigTable = (profileIdCopy) => {
     const [form] = Form.useForm();
     const { profiles, setProfiles } = useContext(ProfileContext);
-    const [data, setData] = useState(originData);
     const [editingKey, setEditingKey] = useState('');
-
+    let profileConfigApp = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    let initialData;
+    if(profileConfigApp[0].configApp !== undefined){
+        initialData = profileConfigApp[0].configApp
+    } else {
+        initialData = originData
+    }
+    const [data, setData] = useState(initialData);
     const isEditing = record => record.key === editingKey;
 
     const edit = record => {
@@ -117,7 +123,6 @@ const AppConfigTable = (profileIdCopy) => {
             }
         });
         setProfiles(profilesCopy);
-        console.log('App', profilesCopy)
     }, [data])
 
     const columns = [
@@ -184,28 +189,28 @@ const AppConfigTable = (profileIdCopy) => {
         };
     });
     return (
-            <Form form={form} component={false}>
-                <Button
-                    onClick={handleAdd}
-                    type="submit"
-                    style={{
-                        marginBottom: 16,
-                    }}>Add a row</Button>
-                <Table
-                    components={{
-                        body: {
-                            cell: EditableCell,
-                        },
-                    }}
-                    bordered
-                    dataSource={data}
-                    columns={mergedColumns}
-                    rowClassName="editable-row-app"
-                    pagination={{
-                        onChange: cancel,
-                    }}
-                />
-            </Form>
+        <Form form={form} component={false}>
+            <Button
+                onClick={handleAdd}
+                type="submit"
+                style={{
+                    marginBottom: 16,
+                }}>Add a row</Button>
+            <Table
+                components={{
+                    body: {
+                        cell: EditableCell,
+                    },
+                }}
+                bordered
+                dataSource={data}
+                columns={mergedColumns}
+                rowClassName="editable-row-app"
+                pagination={{
+                    onChange: cancel,
+                }}
+            />
+        </Form>
     );
 };
 export default AppConfigTable
