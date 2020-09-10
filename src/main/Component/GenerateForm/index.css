@@ -25,3 +25,8 @@
   padding: 24px;
   border-radius: 2px;
 }
+
+div[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+}
