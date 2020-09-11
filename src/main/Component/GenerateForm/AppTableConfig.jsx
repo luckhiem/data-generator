@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Table, Input, InputNumber, Popconfirm, Form, Button } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Button, Select } from 'antd';
 
 const originData = [];
 
@@ -29,19 +29,17 @@ const EditableCell = ({
     const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
     return (
         <td {...restProps}>
+            {console.log('dataIndex', dataIndex)}
             {editing ? (
                 <Form.Item
                     name={dataIndex}
-                    style={{
-                        margin: 0,
-                    }}
+                    style={{ margin: 0 }}
                     rules={[
                         {
                             required: true,
                             message: `Please Input ${title}!`,
                         },
-                    ]}
-                >
+                    ]}>
                     {inputNode}
                 </Form.Item>
             ) : (
@@ -59,7 +57,7 @@ const AppConfigTable = (profileIdCopy) => {
     let profileConfigApp = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
     console.log('profileConfigApp', profileConfigApp)
     if (profileConfigApp.length > 0) {
-        if(profileConfigApp[0].configApp !== undefined){
+        if (profileConfigApp[0].configApp !== undefined) {
             initialData = profileConfigApp[0].configApp
         } else {
             initialData = originData
@@ -138,7 +136,7 @@ const AppConfigTable = (profileIdCopy) => {
         {
             title: 'Amount',
             dataIndex: 'amount',
-            width: '15%',
+            width: '10%',
             editable: true,
         },
         {
@@ -146,6 +144,18 @@ const AppConfigTable = (profileIdCopy) => {
             dataIndex: 'appType',
             width: '40%',
             editable: true,
+            render: (select, record) => {
+                return data.length >= 1 ? (
+                    <>
+                        {console.log(editingKey !== '')}
+                        <Select disabled={editingKey !== ''} defaultValue="appWithMultipleFields" style={{ width: 240 }}>
+                            <Option value="appWithMultipleFields">App With Multiple Fields</Option>
+                            <Option value="appWithRequiredFields">App With Required Fields</Option>
+                            <Option value="appWithoutField">App Without Field</Option>
+                        </Select>
+                    </>
+                ) : null
+            },
         },
         {
             title: 'operation',
