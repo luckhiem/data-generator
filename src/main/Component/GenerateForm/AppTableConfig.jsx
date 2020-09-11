@@ -29,7 +29,6 @@ const EditableCell = ({
     const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
     return (
         <td {...restProps}>
-            {console.log('dataIndex', dataIndex)}
             {editing ? (
                 <Form.Item
                     name={dataIndex}
@@ -40,7 +39,7 @@ const EditableCell = ({
                             message: `Please Input ${title}!`,
                         },
                     ]}>
-                    {inputNode}
+                    <Input></Input>
                 </Form.Item>
             ) : (
                     children
@@ -143,12 +142,11 @@ const AppConfigTable = (profileIdCopy) => {
             title: 'App Type',
             dataIndex: 'appType',
             width: '40%',
-            editable: true,
             render: (select, record) => {
                 return data.length >= 1 ? (
                     <>
                         {console.log(editingKey !== '')}
-                        <Select disabled={editingKey !== ''} defaultValue="appWithMultipleFields" style={{ width: 240 }}>
+                        <Select defaultValue="appWithMultipleFields" style={{ width: 240 }}>
                             <Option value="appWithMultipleFields">App With Multiple Fields</Option>
                             <Option value="appWithRequiredFields">App With Required Fields</Option>
                             <Option value="appWithoutField">App Without Field</Option>
