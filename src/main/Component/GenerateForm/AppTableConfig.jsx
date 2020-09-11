@@ -45,7 +45,7 @@ const EditableCell = ({
                             message: `Please Input ${title}!`,
                         },
                     ]}>
-                    <Input></Input>
+                    {inputNode}
                 </Form.Item>
             ) : (
                     children
