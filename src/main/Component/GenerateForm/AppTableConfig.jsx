@@ -45,7 +45,7 @@ const EditableCell = ({
                             message: `Please Input ${title}!`,
                         },
                     ]}>
-                    {inputNode}
+                    <Input></Input>
                 </Form.Item>
             ) : (
                     children
@@ -149,6 +149,18 @@ const AppConfigTable = (profileIdCopy) => {
             dataIndex: 'appType',
             width: '40%',
             editable: true,
+            render: (select, record) => {
+                return data.length >= 1 ? (
+                    <>
+                        {console.log(editingKey !== '')}
+                        <Select defaultValue="appWithMultipleFields" style={{ width: 240 }}>
+                            <Option value="appWithMultipleFields">App With Multiple Fields</Option>
+                            <Option value="appWithRequiredFields">App With Required Fields</Option>
+                            <Option value="appWithoutField">App Without Field</Option>
+                        </Select>
+                    </>
+                ) : null
+            },
         },
         {
             title: 'operation',
