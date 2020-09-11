@@ -26,10 +26,15 @@ const EditableCell = ({
     children,
     ...restProps
 }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    const inputNode = (dataIndex === 'appName') ? <Input />
+        : (dataIndex === 'amount') ? <InputNumber />
+            : <Select defaultValue="appWithMultipleFields" style={{ width: 240 }}>
+                <Select.Option value="appWithMultipleFields">App With Multiple Fields</Select.Option>
+                <Select.Option value="appWithRequiredFields">App With Required Fields</Select.Option>
+                <Select.Option value="appWithoutField">App Without Field</Select.Option>
+            </Select>
     return (
         <td {...restProps}>
-            {console.log('dataIndex', dataIndex)}
             {editing ? (
                 <Form.Item
                     name={dataIndex}
@@ -109,9 +114,9 @@ const AppConfigTable = (profileIdCopy) => {
     const handleAdd = () => {
         const newData = {
             key: data.length + 1,
-            appName: `Edrward`,
-            amount: 32,
-            appType: `London Park no.`,
+            appName: `Sample App`,
+            amount: 1,
+            appType: `App with multiple fields`,
         };
         setData([...data, newData]);
     };
@@ -144,18 +149,6 @@ const AppConfigTable = (profileIdCopy) => {
             dataIndex: 'appType',
             width: '40%',
             editable: true,
-            render: (select, record) => {
-                return data.length >= 1 ? (
-                    <>
-                        {console.log(editingKey !== '')}
-                        <Select disabled={editingKey !== ''} defaultValue="appWithMultipleFields" style={{ width: 240 }}>
-                            <Option value="appWithMultipleFields">App With Multiple Fields</Option>
-                            <Option value="appWithRequiredFields">App With Required Fields</Option>
-                            <Option value="appWithoutField">App Without Field</Option>
-                        </Select>
-                    </>
-                ) : null
-            },
         },
         {
             title: 'operation',
