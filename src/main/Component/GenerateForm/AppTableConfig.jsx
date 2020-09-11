@@ -12,7 +12,7 @@ for (let i = 0; i < 1; i++) {
         key: i.toString(),
         appName: `Test App`,
         amount: 1,
-        appType: `App with multiple fields`,
+        appType: `appWithMultipleFields`,
     });
 }
 
@@ -29,9 +29,9 @@ const EditableCell = ({
     const inputNode = (dataIndex === 'appName') ? <Input />
         : (dataIndex === 'amount') ? <InputNumber />
             : <Select defaultValue="appWithMultipleFields" style={{ width: 240 }}>
-                <Select.Option value="appWithMultipleFields">App With Multiple Fields</Select.Option>
-                <Select.Option value="appWithRequiredFields">App With Required Fields</Select.Option>
-                <Select.Option value="appWithoutField">App Without Field</Select.Option>
+                <Select.Option value="appWithMultipleFields">appWithMultipleFields</Select.Option>
+                <Select.Option value="appWithRequiredFields">appWithRequiredFields</Select.Option>
+                <Select.Option value="appWithoutField">appWithoutField</Select.Option>
             </Select>
     return (
         <td {...restProps}>
@@ -116,7 +116,7 @@ const AppConfigTable = (profileIdCopy) => {
             key: data.length + 1,
             appName: `Sample App`,
             amount: 1,
-            appType: `App with multiple fields`,
+            appType: `appWithMultipleFields`,
         };
         setData([...data, newData]);
     };
