@@ -20,7 +20,6 @@ const EditableCell = ({
     editing,
     dataIndex,
     title,
-    inputType,
     record,
     index,
     children,
@@ -187,7 +186,6 @@ const AppConfigTable = (profileIdCopy) => {
             ...col,
             onCell: record => ({
                 record,
-                inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
                 title: col.title,
                 editing: isEditing(record),
