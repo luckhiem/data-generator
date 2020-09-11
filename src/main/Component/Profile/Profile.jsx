@@ -7,7 +7,7 @@ import { ipcRenderer } from 'electron';
 import Result from './Result';
 
 const { Content } = Layout;
-
+let now = new Date().toLocaleString();
 
 const Profile = () => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -141,7 +141,7 @@ const Profile = () => {
                     <Descriptions.Item label="Password">******</Descriptions.Item>
                     <Descriptions.Item label="Profile ID">{dataProfile.profileId}</Descriptions.Item>
                     <Descriptions.Item label="Status">{<Tag color={color}>{dataProfile.status}</Tag>}</Descriptions.Item>
-                    <Descriptions.Item label="Running Time">2017-01-10</Descriptions.Item>
+                    <Descriptions.Item label="Running Time">{now}</Descriptions.Item>
                 </Descriptions>
             </PageHeader>
             <SettingModal

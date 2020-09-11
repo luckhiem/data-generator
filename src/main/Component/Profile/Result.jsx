@@ -35,7 +35,7 @@ const Result = ({ profile }) => {
     const contentList = {
         tab1: <GenerateConfigForm profileId={profileIdCopy}/>,
         tab2: <Input.TextArea disabled={true} autoSize={true} value={JSON.stringify(configData, null, 2)} style={{ color: "#000000" }}></Input.TextArea>,
-        tab3: <Input.TextArea disabled={true} autoSize={true} value={logData} style={{ color: "#000000" }}></Input.TextArea>,
+        tab3: <Input.TextArea disabled={true} autoSize={true} value={JSON.stringify(logData, null, 2)} style={{ color: "#000000" }}></Input.TextArea>,
     };
 
     return (

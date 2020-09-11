@@ -72,7 +72,7 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
 
     }
     const results = await prepareTestData.prepareTestData(config);
-    await event.reply('kintone-reply', { status: 'DONE', config: results.configObj});
+    await event.reply('kintone-reply', { status: 'DONE', config: results.configObj, log: results.logger});
     return event;
   } catch (err) {
     console.log(err)
