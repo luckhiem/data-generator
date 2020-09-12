@@ -1,51 +1,53 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { ProfileContext } from '../Layout/app';
 import { ipcRenderer } from 'electron';
+import { Button } from 'antd';
 
 const TeardownService = (rowProfileId) => {
-    // const { profiles, setProfiles } = useContext(ProfileContext);
-    // let index;
-    // let arg = {
-    //     domain: '',
-    //     username: '',
-    //     password: '',
-    //     profileId: '',
-    //     generateConfig: '',
-    //     configApp: '',
-    //     configSpace: ''
+    const { profiles, setProfiles } = useContext(ProfileContext);
+    return (
+        <Button
+            key="3"
+            type="submit"
+            danger
+            style={{ marginRight: '5px' }}
+            onClick={() => {
+                let index;
+                let arg = {
+                    domain: '',
+                    username: '',
+                    password: '',
+                    profileId: '',
+                    generateConfig: '',
+                    configApp: '',
+                    configSpace: ''
 
-    // }
-    // const newProfile = [...profiles];
-    // profiles.forEach((item, i) => {
-    //     if (rowProfileId === item.profileId) {
-    //         index = i;
-    //         newProfile[i].status = 'PROCESSING';
-    //     }
-    // });
-    // setProfiles(newProfile);
-    // console.log('newProfile', newProfile)
-    // arg.domain = newProfile[index].domain;
-    // arg.username = newProfile[index].username;
-    // arg.password = newProfile[index].password;
-    // arg.profileId = newProfile[index].profileId;
-    // arg.generateConfig = newProfile[index].generateConfig;
-    // arg.configApp = newProfile[index].configApp;
-    // arg.configSpace = newProfile[index].configSpace;
-    ipcRenderer.send('request-teardown', arg);
-    const listener = (event, response) => {
-        // const newProfile = [...profiles];
-        // profiles.forEach((item, i) => {
-        //     if (rowProfileId === item.profileId) {
-        //         newProfile[i].status = response.status;
-        //         newProfile[i].config = response.config;
-        //         newProfile[i].log = response.log;
-        //     }
-        // });
-        // setProfiles(newProfile);
-        console.log('request-teardown-res', response)
-        ipcRenderer.removeListener('reply-request-teardown', listener);
-    };
-    ipcRenderer.on('reply-request-teardown', listener);
+                }
+                const newProfile = [...profiles];
+                profiles.forEach((item, i) => {
+                    if (rowProfileId.rowProfileId === item.profileId) {
+                        index = i;
+                        newProfile[i].status = 'PROCESSING';
+                    }
+                });
+                setProfiles(newProfile);
+                arg.domain = newProfile[index].domain;
+                arg.username = newProfile[index].username;
+                arg.password = newProfile[index].password;
+                arg.profileId = newProfile[index].profileId;
+                arg.generateConfig = newProfile[index].generateConfig;
+                arg.configApp = newProfile[index].configApp;
+                arg.configSpace = newProfile[index].configSpace;
+                arg.config = newProfile[index].config;
+                ipcRenderer.send('request-teardown', arg);
+                const listener = (event, response) => {
+                    console.log('request-teardown-res', response)
+                    ipcRenderer.removeListener('reply-request-teardown', listener);
+                };
+                ipcRenderer.on('reply-request-teardown', listener);
+            }}>
+            Teardown</Button>
+    )
 }
 
 export default TeardownService

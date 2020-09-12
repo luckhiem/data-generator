@@ -6,7 +6,7 @@ import { ProfileContext } from '../../Layout/app';
 import SettingModal from '../Header/SettingModal';
 import { ipcRenderer } from 'electron';
 import GenerateService from '../../Service/GenerateService';
-import teardownService from '../../Service/TeardownService'
+import TeardownService from '../../Service/TeardownService'
 
 
 const TableProfile = () => {
@@ -66,15 +66,7 @@ const TableProfile = () => {
             render: (row) => (
                 <div className="action-btn">
                     <GenerateService rowProfileId={row.profileId}></GenerateService>
-                    <Button
-                        type="submit"
-                        danger
-                        style={{ marginRight: '5px' }}
-                        onClick={() => {
-                            console.log('trigger')
-                            teardownService()
-                        }}>
-                        Teardown</Button>
+                    <TeardownService rowProfileId={row.profileId}></TeardownService>
                     <Button
                         type="default"
                         style={{ marginRight: '5px' }}

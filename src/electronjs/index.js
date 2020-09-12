@@ -52,23 +52,22 @@ app.on('activate', () => {
 
 ipcMain.on('request-teardown', async (event, arg) => {
   try {
-    // const config = {
-    //   "domain": arg.domain,
-    //   "proxy": {
-    //     "host": "dc-ty3-squid-1.cb.local",
-    //     "ip": "10.224.136.40",
-    //     "port": 3128
-    //   },
-    //   "administrators": {
-    //     "username": arg.username,
-    //     "password": arg.password
-    //   },
-    //   "generateConfig": arg.generateConfig,
-    //   "configApp": arg.configApp,
-    //   "configSpace": arg.configSpace,
+    const config = {
+      "domain": arg.domain,
+      "proxy": {
+        "host": "dc-ty3-squid-1.cb.local",
+        "ip": "10.224.136.40",
+        "port": 3128
+      },
+      "administrators": {
+        "username": arg.username,
+        "password": arg.password
+      }
+    }
 
-    // }
-    console.log('request-teardown', arg)
+    const configData = arg.config
+    console.log('request-teardown', config)
+    console.log('request-teardown', configData)
     // const results = await prepareTestData.prepareTestData(config);
     await event.reply('reply-request-teardown', { status: 'DONE'});
     return event;
