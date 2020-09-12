@@ -80,7 +80,7 @@ ipcMain.on('request-teardown', async (event, arg) => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 // Event listener for kintone
-ipcMain.on('request-to-kintone', async (event, arg) => {
+ipcMain.on('request-setup', async (event, arg) => {
   try {
     const config = {
       "domain": arg.domain,
@@ -99,10 +99,10 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
 
     }
     const results = await server.prepareTestData.setup(config);
-    await event.reply('kintone-reply', { status: 'DONE', config: results.configObj, log: results.logger});
+    await event.reply('reply-request-setup', { status: 'DONE', config: results.configObj, log: results.logger});
     return event;
   } catch (err) {
     console.log(err)
-    event.reply('kintone-reply', { status: err });
+    event.reply('reply-request-setup', { status: err });
   }
 });

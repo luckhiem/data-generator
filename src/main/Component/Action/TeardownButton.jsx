@@ -34,7 +34,16 @@ const TeardownButton = (rowProfileId) => {
                 arg.config = newProfile[index].config;
                 ipcRenderer.send('request-teardown', arg);
                 const listener = (event, response) => {
-                    console.log('request-teardown-res', response)
+                    const newProfileRes = [...profiles];
+                    profiles.forEach((item, i) => {
+                        if (rowProfileId.rowProfileId === item.profileId) {
+                            newProfileRes[i].status = response.status;
+                            newProfileRes[i].config = null;
+                            newProfileRes[i].log = null;
+                        }
+                    });
+                    setProfiles(newProfileRes);
+                    window.localStorage.setItem('profiles', JSON.stringify(newProfileRes));
                     ipcRenderer.removeListener('reply-request-teardown', listener);
                 };
                 ipcRenderer.on('reply-request-teardown', listener);

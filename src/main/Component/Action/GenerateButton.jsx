@@ -37,7 +37,7 @@ const GenerateButton = (rowProfileId) => {
                 arg.generateConfig = newProfile[index].generateConfig;
                 arg.configApp = newProfile[index].configApp;
                 arg.configSpace = newProfile[index].configSpace;
-                ipcRenderer.send('request-to-kintone', arg);
+                ipcRenderer.send('request-setup', arg);
                 const listener = (event, response) => {
                     const newProfileRes = [...profiles];
                     profiles.forEach((item, i) => {
@@ -49,9 +49,9 @@ const GenerateButton = (rowProfileId) => {
                     });
                     setProfiles(newProfileRes);
                     window.localStorage.setItem('profiles', JSON.stringify(newProfileRes));
-                    ipcRenderer.removeListener('kintone-reply', listener);
+                    ipcRenderer.removeListener('reply-request-setup', listener);
                 };
-                ipcRenderer.on('kintone-reply', listener);
+                ipcRenderer.on('reply-request-setup', listener);
             }}>
             Generate</Button>
     )
