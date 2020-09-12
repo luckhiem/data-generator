@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader/root';
 import 'antd/dist/antd.css';
 import './style.css';
 import { Layout, Menu, Row, Col } from 'antd';
-import SettingProfile from '../Component/Header/index';
+import SettingProfile from '../Component/Header/ProfileAdd';
 import TableProfile from '../Component/Profile/Dashboard/TableProfile';
 import Operation from '../Component/Operation/Operation';
 import Status from '../Component/Status/Status';

@@ -1,17 +1,18 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { ProfileContext } from '../../Layout/app';
+import { ProfileContext } from '../../../../Layout/app';
 import 'antd/dist/antd.css';
 import './style.css';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Select } from 'antd';
 
 const originData = [];
 
+
 for (let i = 0; i < 1; i++) {
     originData.push({
         key: i.toString(),
-        spaceName: `Normal Space`,
+        appName: `Test App`,
         amount: 1,
-        spaceType: `normalSpace`,
+        appType: `appWithMultipleFields`,
     });
 }
 
@@ -19,33 +20,30 @@ const EditableCell = ({
     editing,
     dataIndex,
     title,
-    inputType,
     record,
     index,
     children,
     ...restProps
 }) => {
-    const inputNode = (dataIndex === 'spaceName') ? <Input />
-    : (dataIndex === 'amount') ? <InputNumber />
-        : <Select defaultValue="normalSpace" style={{ width: 240 }}>
-            <Select.Option value="normalSpace">normalSpace</Select.Option>
-            <Select.Option value="guestSpace">guestSpace</Select.Option>
-        </Select>
+    const inputNode = (dataIndex === 'appName') ? <Input />
+        : (dataIndex === 'amount') ? <InputNumber />
+            : <Select defaultValue="appWithMultipleFields" style={{ width: 240 }}>
+                <Select.Option value="appWithMultipleFields">appWithMultipleFields</Select.Option>
+                <Select.Option value="appWithRequiredFields">appWithRequiredFields</Select.Option>
+                <Select.Option value="appWithoutField">appWithoutField</Select.Option>
+            </Select>
     return (
         <td {...restProps}>
             {editing ? (
                 <Form.Item
                     name={dataIndex}
-                    style={{
-                        margin: 0,
-                    }}
+                    style={{ margin: 0 }}
                     rules={[
                         {
                             required: true,
                             message: `Please Input ${title}!`,
                         },
-                    ]}
-                >
+                    ]}>
                     {inputNode}
                 </Form.Item>
             ) : (
@@ -55,29 +53,28 @@ const EditableCell = ({
     );
 };
 
-const SpaceConfigTable = (profileIdCopy) => {
+const AppConfigTable = (profileIdCopy) => {
     const [form] = Form.useForm();
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [editingKey, setEditingKey] = useState('');
-
-    let profileConfigSpace = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
     let initialData;
-    if (profileConfigSpace.length > 0) {
-        if (profileConfigSpace[0].configSpace !== undefined) {
-            initialData = profileConfigSpace[0].configSpace
+    let profileConfigApp = profiles.filter(obj => obj.profileId === profileIdCopy.profileId);
+    console.log('profileConfigApp', profileConfigApp)
+    if (profileConfigApp.length > 0) {
+        if (profileConfigApp[0].configApp !== undefined) {
+            initialData = profileConfigApp[0].configApp
         } else {
             initialData = originData
         }
     }
     const [data, setData] = useState(initialData);
-
     const isEditing = record => record.key === editingKey;
 
     const edit = record => {
         form.setFieldsValue({
-            spaceName: '',
+            appName: '',
             amount: '',
-            spaceType: '',
+            appType: '',
             ...record,
         });
         setEditingKey(record.key);
@@ -116,9 +113,9 @@ const SpaceConfigTable = (profileIdCopy) => {
     const handleAdd = () => {
         const newData = {
             key: data.length + 1,
-            spaceName: `Normal Space`,
+            appName: `Sample App`,
             amount: 1,
-            spaceType: `normalSpace`,
+            appType: `appWithMultipleFields`,
         };
         setData([...data, newData]);
     };
@@ -127,7 +124,7 @@ const SpaceConfigTable = (profileIdCopy) => {
         const profilesCopy = [...profiles];
         profilesCopy.forEach((item, i) => {
             if (profileIdCopy.profileId === item.profileId) {
-                profilesCopy[i].configSpace = data;
+                profilesCopy[i].configApp = data;
             }
         });
         setProfiles(profilesCopy);
@@ -135,20 +132,20 @@ const SpaceConfigTable = (profileIdCopy) => {
 
     const columns = [
         {
-            title: 'Space Name',
-            dataIndex: 'spaceName',
+            title: 'App Name',
+            dataIndex: 'appName',
             width: '25%',
             editable: true,
         },
         {
             title: 'Amount',
             dataIndex: 'amount',
-            width: '15%',
+            width: '10%',
             editable: true,
         },
         {
-            title: 'Space Type',
-            dataIndex: 'spaceType',
+            title: 'App Type',
+            dataIndex: 'appType',
             width: '40%',
             editable: true,
         },
@@ -189,7 +186,6 @@ const SpaceConfigTable = (profileIdCopy) => {
             ...col,
             onCell: record => ({
                 record,
-                inputType: col.dataIndex === 'age' ? 'number' : 'text',
                 dataIndex: col.dataIndex,
                 title: col.title,
                 editing: isEditing(record),
@@ -213,7 +209,7 @@ const SpaceConfigTable = (profileIdCopy) => {
                 bordered
                 dataSource={data}
                 columns={mergedColumns}
-                rowClassName="editable-row-space"
+                rowClassName="editable-row-app"
                 pagination={{
                     onChange: cancel,
                 }}
@@ -221,4 +217,4 @@ const SpaceConfigTable = (profileIdCopy) => {
         </Form>
     );
 };
-export default SpaceConfigTable
+export default AppConfigTable

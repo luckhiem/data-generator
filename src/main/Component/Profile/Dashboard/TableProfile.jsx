@@ -4,8 +4,8 @@ import { Table, Tag, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../../Layout/app';
 import SettingModal from '../../Header/SettingModal';
-import GenerateButton from '../../Action/GenerateButton';
-import TeardownButton from '../../Action/TeardownButton'
+import GenerateButton from '../Action/GenerateButton';
+import TeardownButton from '../Action/TeardownButton'
 
 
 const TableProfile = () => {

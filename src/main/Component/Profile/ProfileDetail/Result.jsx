@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import GenerateConfigForm from '../../GenerateForm/GenerateConfigForm';
+import GenerateConfigForm from './GenerateForm/GenerateConfigForm';
 import 'antd/dist/antd.css';
 import { Input, Card } from 'antd';
 
