@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
 import { Table, Tag, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
-import { ProfileContext } from '../../Layout/app';
-import SettingModal from '../Header/SettingModal';
-import GenerateButton from '../Action/GenerateButton';
-import TeardownButton from '../Action/TeardownButton'
+import { ProfileContext } from '../../../Layout/app';
+import SettingModal from '../../Header/SettingModal';
+import GenerateButton from '../../Action/GenerateButton';
+import TeardownButton from '../../Action/TeardownButton'
 
 
 const TableProfile = () => {

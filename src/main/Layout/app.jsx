@@ -5,10 +5,10 @@ import 'antd/dist/antd.css';
 import './style.css';
 import { Layout, Menu, Row, Col } from 'antd';
 import SettingProfile from '../Component/Header/index';
-import TableProfile from '../Component/TableProfile/TableProfile';
+import TableProfile from '../Component/Profile/Dashboard/TableProfile';
 import Operation from '../Component/Operation/Operation';
 import Status from '../Component/Status/Status';
-import Profile from '../Component/Profile/Profile';
+import Profile from '../Component/Profile/ProfileDetail/Profile';
 
 
 const { Header, Content, Footer } = Layout;

@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Button, PageHeader, Descriptions, Tag, Modal, Row } from 'antd';
-import { ProfileContext } from '../../Layout/app';
-import SettingModal from '../Header/SettingModal';
-import GenerateButton from '../Action/GenerateButton';
-import TeardownButton from '../Action/TeardownButton'
+import { ProfileContext } from '../../../Layout/app';
+import SettingModal from '../../Header/SettingModal';
+import GenerateButton from '../../Action/GenerateButton';
+import TeardownButton from '../../Action/TeardownButton'
 import Result from './Result';
 
 const { Content } = Layout;
