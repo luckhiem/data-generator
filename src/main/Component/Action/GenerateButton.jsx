@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { ProfileContext } from '../Layout/app';
+import { ProfileContext } from '../../Layout/app';
 import { ipcRenderer } from 'electron';
 import { Button } from 'antd';
 
-const GenerateService = (rowProfileId) => {
+const GenerateButton = (rowProfileId) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     return (
         <Button
@@ -57,4 +57,4 @@ const GenerateService = (rowProfileId) => {
     )
 }
 
-export default GenerateService
+export default GenerateButton

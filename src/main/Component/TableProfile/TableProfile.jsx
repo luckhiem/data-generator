@@ -4,9 +4,8 @@ import { Table, Tag, Button, Modal } from 'antd';
 import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../Layout/app';
 import SettingModal from '../Header/SettingModal';
-import { ipcRenderer } from 'electron';
-import GenerateService from '../../Service/GenerateService';
-import TeardownService from '../../Service/TeardownService'
+import GenerateButton from '../Action/GenerateButton';
+import TeardownButton from '../Action/TeardownButton'
 
 
 const TableProfile = () => {
@@ -65,8 +64,8 @@ const TableProfile = () => {
             key: 'action',
             render: (row) => (
                 <div className="action-btn">
-                    <GenerateService rowProfileId={row.profileId}></GenerateService>
-                    <TeardownService rowProfileId={row.profileId}></TeardownService>
+                    <GenerateButton rowProfileId={row.profileId}></GenerateButton>
+                    <TeardownButton rowProfileId={row.profileId}></TeardownButton>
                     <Button
                         type="default"
                         style={{ marginRight: '5px' }}

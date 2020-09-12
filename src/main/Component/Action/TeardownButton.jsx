@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { ProfileContext } from '../Layout/app';
+import { ProfileContext } from '../../Layout/app';
 import { ipcRenderer } from 'electron';
 import { Button } from 'antd';
 
-const TeardownService = (rowProfileId) => {
+const TeardownButton = (rowProfileId) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     return (
         <Button
@@ -43,4 +43,4 @@ const TeardownService = (rowProfileId) => {
     )
 }
 
-export default TeardownService
+export default TeardownButton
