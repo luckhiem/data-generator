@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
-const prepareTestData = require('kintone-test-preparation');
+const server = require('kintone-test-preparation');
 const fs = require('fs');
 const path = require('path');
 
@@ -68,7 +68,7 @@ ipcMain.on('request-teardown', async (event, arg) => {
     const configData = arg.config
     console.log('request-teardown', config)
     console.log('request-teardown', configData)
-    // const results = await prepareTestData.prepareTestData(config);
+    const results = await server.teardownTestData.teardown(config, configData);
     await event.reply('reply-request-teardown', { status: 'DONE'});
     return event;
   } catch (err) {
@@ -98,7 +98,7 @@ ipcMain.on('request-to-kintone', async (event, arg) => {
       "configSpace": arg.configSpace,
 
     }
-    const results = await prepareTestData.prepareTestData(config);
+    const results = await server.prepareTestData.setup(config);
     await event.reply('kintone-reply', { status: 'DONE', config: results.configObj, log: results.logger});
     return event;
   } catch (err) {

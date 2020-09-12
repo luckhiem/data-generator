@@ -3,8 +3,8 @@ import 'antd/dist/antd.css';
 import { Layout, Button, PageHeader, Descriptions, Tag, Modal, Row } from 'antd';
 import { ProfileContext } from '../../Layout/app';
 import SettingModal from '../Header/SettingModal';
-import { ipcRenderer } from 'electron';
 import GenerateService from '../../Service/GenerateService';
+import TeardownService from '../../Service/TeardownService';
 import Result from './Result';
 
 const { Content } = Layout;
@@ -67,13 +67,8 @@ const Profile = () => {
                 onBack={() => window.history.back()}
                 title={"Profile " + dataProfile.name}
                 extra={[
-                    <GenerateService rowProfileId={profileId}></GenerateService>,
-                    <Button
-                        key="3"
-                        type="submit"
-                        danger
-                        style={{ marginRight: '5px' }}>
-                        Teardown</Button>,
+                    <GenerateService key="4" rowProfileId={profileId}></GenerateService>,
+                    <TeardownService key="3" rowProfileId={profileId}></TeardownService>,
                     <Button
                         key="2"
                         type="default"

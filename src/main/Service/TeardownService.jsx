@@ -17,10 +17,7 @@ const TeardownService = (rowProfileId) => {
                     domain: '',
                     username: '',
                     password: '',
-                    profileId: '',
-                    generateConfig: '',
-                    configApp: '',
-                    configSpace: ''
+                    config: ''
 
                 }
                 const newProfile = [...profiles];
@@ -34,10 +31,6 @@ const TeardownService = (rowProfileId) => {
                 arg.domain = newProfile[index].domain;
                 arg.username = newProfile[index].username;
                 arg.password = newProfile[index].password;
-                arg.profileId = newProfile[index].profileId;
-                arg.generateConfig = newProfile[index].generateConfig;
-                arg.configApp = newProfile[index].configApp;
-                arg.configSpace = newProfile[index].configSpace;
                 arg.config = newProfile[index].config;
                 ipcRenderer.send('request-teardown', arg);
                 const listener = (event, response) => {
