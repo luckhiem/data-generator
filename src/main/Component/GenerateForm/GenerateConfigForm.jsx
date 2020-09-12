@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
-import './index.css';
+import './style.css';
 import { Form, Row, Col, Switch, Button} from 'antd';
 import AppConfigTable from './AppTableConfig.jsx';
 import SpaceConfigTable from './SpaceTableConfig';

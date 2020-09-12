@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
-import './index.css';
+import './style.css';
 import { Table, Input, InputNumber, Popconfirm, Form, Button, Select } from 'antd';
 
 const originData = [];
