@@ -2,16 +2,16 @@ import React, { useState, useContext, useEffect } from 'react';
 import { ProfileContext } from '../../Layout/app';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Table, Input, InputNumber, Popconfirm, Form, Button } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, Button, Select } from 'antd';
 
 const originData = [];
 
 for (let i = 0; i < 1; i++) {
     originData.push({
         key: i.toString(),
-        spaceName: `Test Space`,
+        spaceName: `Normal Space`,
         amount: 1,
-        spaceType: `Guest Space`,
+        spaceType: `normalSpace`,
     });
 }
 
@@ -25,7 +25,12 @@ const EditableCell = ({
     children,
     ...restProps
 }) => {
-    const inputNode = inputType === 'number' ? <InputNumber /> : <Input />;
+    const inputNode = (dataIndex === 'spaceName') ? <Input />
+    : (dataIndex === 'amount') ? <InputNumber />
+        : <Select defaultValue="normalSpace" style={{ width: 240 }}>
+            <Select.Option value="normalSpace">normalSpace</Select.Option>
+            <Select.Option value="guestSpace">guestSpace</Select.Option>
+        </Select>
     return (
         <td {...restProps}>
             {editing ? (

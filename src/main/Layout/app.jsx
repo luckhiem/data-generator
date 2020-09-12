@@ -66,7 +66,7 @@ const App = () => {
                   <Route exact path="/" component={TableProfile}></Route>
                   <Route path="/Operation/" component={Operation}></Route>
                   <Route path="/Status/" component={Status}></Route>
-                  <Route path={"/Profile/"} component={Profile}></Route>
+                  <Route path="/Profile/" component={Profile}></Route>
                 </Switch>
               </div>
             </Content>
