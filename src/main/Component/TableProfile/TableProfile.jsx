@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../Layout/app';
 import SettingModal from '../Header/SettingModal';
 import { ipcRenderer } from 'electron';
+import GenerateService from '../../Service/GenerateService';
+import teardownService from '../../Service/TeardownService'
 
 
 const TableProfile = () => {
@@ -63,57 +65,15 @@ const TableProfile = () => {
             key: 'action',
             render: (row) => (
                 <div className="action-btn">
-                    <Button
-                        type="primary"
-                        style={{ marginRight: '5px' }}
-                        onClick={() => {
-                            let index;
-                            let arg = {
-                                domain: '',
-                                username: '',
-                                password: '',
-                                profileId: '',
-                                generateConfig: '',
-                                configApp: '',
-                                configSpace: ''
-
-                            }
-                            const newProfile = [...profiles];
-                            profiles.forEach((item, i) => {
-                                if (row.profileId === item.profileId) {
-                                    index = i;
-                                    newProfile[i].status = 'PROCESSING';
-                                }
-                            });
-                            setProfiles(newProfile);
-                            console.log('newProfile', newProfile)
-                            arg.domain = newProfile[index].domain;
-                            arg.username = newProfile[index].username;
-                            arg.password = newProfile[index].password;
-                            arg.profileId = newProfile[index].profileId;
-                            arg.generateConfig = newProfile[index].generateConfig;
-                            arg.configApp = newProfile[index].configApp;
-                            arg.configSpace = newProfile[index].configSpace;
-                            ipcRenderer.send('request-to-kintone', arg);
-                            const listener = (event, response) => {
-                                const newProfile = [...profiles];
-                                profiles.forEach((item, i) => {
-                                    if (row.profileId === item.profileId) {
-                                        newProfile[i].status = response.status;
-                                        newProfile[i].config = response.config;
-                                        newProfile[i].log = response.log;
-                                    }
-                                });
-                                setProfiles(newProfile);
-                                ipcRenderer.removeListener('kintone-reply', listener);
-                            };
-                            ipcRenderer.on('kintone-reply', listener);
-                        }}>
-                        Generate</Button>
+                    <GenerateService rowProfileId={row.profileId}></GenerateService>
                     <Button
                         type="submit"
                         danger
-                        style={{ marginRight: '5px' }}>
+                        style={{ marginRight: '5px' }}
+                        onClick={() => {
+                            console.log('trigger')
+                            teardownService()
+                        }}>
                         Teardown</Button>
                     <Button
                         type="default"

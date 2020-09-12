@@ -4,6 +4,7 @@ import { Layout, Button, PageHeader, Descriptions, Tag, Modal, Row } from 'antd'
 import { ProfileContext } from '../../Layout/app';
 import SettingModal from '../Header/SettingModal';
 import { ipcRenderer } from 'electron';
+import GenerateService from '../../Service/GenerateService';
 import Result from './Result';
 
 const { Content } = Layout;
@@ -66,40 +67,7 @@ const Profile = () => {
                 onBack={() => window.history.back()}
                 title={"Profile " + dataProfile.name}
                 extra={[
-                    <Button
-                        key="4"
-                        type="primary"
-                        style={{ marginRight: '5px' }}
-                        onClick={() => {
-                            const newProfile = [...profiles];
-                            let index;
-                            profiles.forEach((item, i) => {
-                                if (profileId === item.profileId) {
-                                    index = i;
-                                    newProfile[i].status = 'PROCESSING';
-                                }
-                            });
-                            setProfiles(newProfile);
-                            const config = newProfile[index]
-                            ipcRenderer.send('request-to-kintone', config);
-                            const listener = (event, response) => {
-                                const newProfile = [...profiles];
-                                let index;
-                                profiles.forEach((item, i) => {
-                                    if (profileId === item.profileId) {
-                                        index = i;
-                                        newProfile[i].status = response.status;
-                                        newProfile[i].config = response.config;
-                                        newProfile[i].log = response.log;
-                                    }
-                                });
-                                setProfiles(newProfile);
-                                window.localStorage.setItem('profiles', JSON.stringify(newProfile));
-                                ipcRenderer.removeListener('kintone-reply', listener);
-                            };
-                            ipcRenderer.on('kintone-reply', listener);
-                        }}>
-                        Generate</Button>,
+                    <GenerateService rowProfileId={profileId}></GenerateService>,
                     <Button
                         key="3"
                         type="submit"

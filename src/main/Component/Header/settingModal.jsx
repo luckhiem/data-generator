@@ -57,7 +57,7 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
               newProfiles = [...profiles];
             }
             if (profileId === undefined || profileId === null) {
-              values.profileId = values.name + '-' + Math.floor(Math.random() * 999999);
+              values.profileId = 'PID-' + Math.floor(Math.random() * 999999);
               values.status = "NEW";
               values.generateConfig = {
                 generateGroup: true,

@@ -50,6 +50,34 @@ app.on('activate', () => {
   }
 });
 
+ipcMain.on('request-teardown', async (event, arg) => {
+  try {
+    // const config = {
+    //   "domain": arg.domain,
+    //   "proxy": {
+    //     "host": "dc-ty3-squid-1.cb.local",
+    //     "ip": "10.224.136.40",
+    //     "port": 3128
+    //   },
+    //   "administrators": {
+    //     "username": arg.username,
+    //     "password": arg.password
+    //   },
+    //   "generateConfig": arg.generateConfig,
+    //   "configApp": arg.configApp,
+    //   "configSpace": arg.configSpace,
+
+    // }
+    console.log('request-teardown', arg)
+    // const results = await prepareTestData.prepareTestData(config);
+    await event.reply('reply-request-teardown', { status: 'DONE'});
+    return event;
+  } catch (err) {
+    console.log(err)
+    event.reply('reply-request-teardown', { status: err });
+  }
+})
+
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 // Event listener for kintone
