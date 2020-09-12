@@ -116,9 +116,9 @@ const SpaceConfigTable = (profileIdCopy) => {
     const handleAdd = () => {
         const newData = {
             key: data.length + 1,
-            spaceName: `Edrward`,
-            amount: 32,
-            spaceType: `London Park no.`,
+            spaceName: `Normal Space`,
+            amount: 1,
+            spaceType: `normalSpace`,
         };
         setData([...data, newData]);
     };
