@@ -76,6 +76,7 @@ const SettingModal = ({ isVisible = false, onClose, profileId }) => {
             console.log('Validate Failed:', info);
           });
       }}
+      forceRender={true}
     >
       <Form
         {...formItemLayout}
