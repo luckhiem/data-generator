@@ -4,7 +4,8 @@ import { Layout, Button, PageHeader, Descriptions, Tag, Modal, Row } from 'antd'
 import { ProfileContext } from '../../../Layout/app';
 import SettingModal from '../../Header/SettingModal';
 import GenerateButton from '../Action/GenerateButton';
-import TeardownButton from '../Action/TeardownButton'
+import TeardownButton from '../Action/TeardownButton';
+import EditButton from '../Action/EditButton'
 import Result from './Result';
 
 const { Content } = Layout;
@@ -69,13 +70,7 @@ const Profile = () => {
                 extra={[
                     <GenerateButton key="4" rowProfileId={profileId}></GenerateButton>,
                     <TeardownButton key="3" rowProfileId={profileId}></TeardownButton>,
-                    <Button
-                        key="2"
-                        type="default"
-                        onClick={() => {
-                            setModalVisible(true)
-                        }}>
-                        Edit</Button>,
+                    <EditButton key="2" profileId={profileId}></EditButton>,
                     <Button
                         key="1"
                         type="primary"
@@ -107,10 +102,6 @@ const Profile = () => {
                     <Descriptions.Item label="Running Time">{now}</Descriptions.Item>
                 </Descriptions>
             </PageHeader>
-            <SettingModal
-                profileId={profileId}
-                isVisible={modalVisible}
-                onClose={() => setModalVisible(false)} />
             <Content>
                 <Row style={{ padding: '24px' }}>
                     <Result profile={newProfiles} />

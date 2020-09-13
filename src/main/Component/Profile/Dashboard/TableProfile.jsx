@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../../Layout/app';
 import SettingModal from '../../Header/SettingModal';
 import GenerateButton from '../Action/GenerateButton';
-import TeardownButton from '../Action/TeardownButton'
+import TeardownButton from '../Action/TeardownButton';
+import EditButton from '../Action/EditButton';
 
 
 const TableProfile = () => {
@@ -66,14 +67,15 @@ const TableProfile = () => {
                 <div className="action-btn">
                     <GenerateButton rowProfileId={row.profileId}></GenerateButton>
                     <TeardownButton rowProfileId={row.profileId}></TeardownButton>
-                    <Button
+                    <EditButton profileId={row.profileId}></EditButton>
+                    {/* <Button
                         type="default"
                         style={{ marginRight: '5px' }}
                         onClick={() => {
                             setRowProfileId(row.profileId)
                             setModalVisible(true)
                         }}>
-                        Edit</Button>
+                        Edit</Button> */}
                     <Button
                         type="primary"
                         danger
