@@ -5,7 +5,7 @@ import 'antd/dist/antd.css';
 import './style.css';
 import { Layout, Menu, Row, Col } from 'antd';
 import SettingProfile from '../Component/Header/ProfileAdd';
-import TableProfile from '../Component/Profile/Dashboard/TableProfile';
+import Dashboard from '../Component/Profile/Dashboard/Dashboard';
 import Operation from '../Component/Operation/Operation';
 import Status from '../Component/Status/Status';
 import Profile from '../Component/Profile/ProfileDetail/Profile';
@@ -63,7 +63,7 @@ const App = () => {
             <Content style={{ padding: '40px', paddingTop: '100px' }}>
               <div className="site-layout-content" style={{ minHeight: '100vh' }}>
                 <Switch>
-                  <Route exact path="/" component={TableProfile}></Route>
+                  <Route exact path="/" component={Dashboard}></Route>
                   <Route path="/Operation/" component={Operation}></Route>
                   <Route path="/Status/" component={Status}></Route>
                   <Route path="/Profile/" component={Profile}></Route>

@@ -10,7 +10,7 @@ import EditButton from '../Action/EditButton';
 import DeleteButton from '../Action/DeleteButton';
 
 
-const TableProfile = () => {
+const Dashboard = () => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const [newProfiles, setNewProfiles] = useState();
     const [rowProfileId, setRowProfileId] = useState();
@@ -84,4 +84,4 @@ const TableProfile = () => {
         </div>
     );
 }
-export default TableProfile
+export default Dashboard
