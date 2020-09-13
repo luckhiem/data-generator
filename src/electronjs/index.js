@@ -23,7 +23,7 @@ const createWindow = () => {
   // and load the index.html of the app.
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // app.commandLine.appendSwitch("proxy-server","localhost:3000")
