@@ -4,7 +4,6 @@ import { Button } from 'antd';
 
 const EditButton = (profileId) => {
     const [modalVisible, setModalVisible] = useState(false);
-    console.log('profileId', profileId)
     return (
         <>
             <Button

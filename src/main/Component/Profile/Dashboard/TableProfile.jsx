@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import 'antd/dist/antd.css';
-import { Table, Tag, Button, Modal } from 'antd';
+import { Table, Tag } from 'antd';
 import { Link } from 'react-router-dom';
 import { ProfileContext } from '../../../Layout/app';
 import SettingModal from '../../Header/SettingModal';
 import GenerateButton from '../Action/GenerateButton';
 import TeardownButton from '../Action/TeardownButton';
 import EditButton from '../Action/EditButton';
+import DeleteButton from '../Action/DeleteButton';
 
 
 const TableProfile = () => {
@@ -14,16 +15,6 @@ const TableProfile = () => {
     const [newProfiles, setNewProfiles] = useState();
     const [rowProfileId, setRowProfileId] = useState();
     const [modalVisible, setModalVisible] = useState(false);
-    const [deleteModalVisible, setDeleteModalVisible] = useState(true);
-
-    const CONFIRM_DELETE_WARNING = "Are you sure to delete this profile ? This action CAN NOT be reverted."
-
-    const removeProfile = (profileId) => {
-        let profilesRemain = [...profiles]
-        const result = profilesRemain.filter(obj => obj.profileId !== profileId);
-        window.localStorage.setItem('profiles', JSON.stringify(result));
-        setProfiles(result);
-    };
 
     const columns = [
         {
@@ -68,32 +59,7 @@ const TableProfile = () => {
                     <GenerateButton rowProfileId={row.profileId}></GenerateButton>
                     <TeardownButton rowProfileId={row.profileId}></TeardownButton>
                     <EditButton profileId={row.profileId}></EditButton>
-                    {/* <Button
-                        type="default"
-                        style={{ marginRight: '5px' }}
-                        onClick={() => {
-                            setRowProfileId(row.profileId)
-                            setModalVisible(true)
-                        }}>
-                        Edit</Button> */}
-                    <Button
-                        type="primary"
-                        danger
-                        onClick={() => {
-                            Modal.confirm({
-                                title: 'Delete Profile',
-                                content: CONFIRM_DELETE_WARNING,
-                                isVisible: deleteModalVisible,
-                                onOk() {
-                                    removeProfile(row.profileId);
-                                },
-                                onCancel() {
-                                    setDeleteModalVisible(false);
-                                },
-                            })
-                        }}>
-                        Delete
-                        </Button>
+                    <DeleteButton profileId={row.profileId}></DeleteButton>
                 </div>
             ),
         },
