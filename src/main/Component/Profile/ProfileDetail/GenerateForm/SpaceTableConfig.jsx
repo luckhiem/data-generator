@@ -143,13 +143,13 @@ const SpaceConfigTable = (profileIdCopy) => {
         {
             title: 'Amount',
             dataIndex: 'amount',
-            width: '15%',
+            width: '10%',
             editable: true,
         },
         {
             title: 'Space Type',
             dataIndex: 'spaceType',
-            width: '40%',
+            width: '50%',
             editable: true,
         },
         {
