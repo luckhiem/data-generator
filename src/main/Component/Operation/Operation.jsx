@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
-import { Table, Space, Button } from 'antd';
+import { Table, Space, Button, Tag } from 'antd';
 import { HistoryContext } from '../../Layout/app';
 import { Link } from 'react-router-dom';
 
@@ -38,6 +38,18 @@ const Operation = () => {
             title: 'Status',
             dataIndex: 'status',
             key: 'status',
+            render: (text) => {
+                if (text === "DONE") {
+                    return (
+                        <Tag color={'green'} key={text}>{text}</Tag>
+                    )
+                }
+                if (text === "ERROR") {
+                    return (
+                        <Tag color={'red'} key={text}>{text}</Tag>
+                    )
+                }
+            }
         },
     ];
 

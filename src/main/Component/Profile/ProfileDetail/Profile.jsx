@@ -42,10 +42,10 @@ const Profile = () => {
     }
 
     if (dataProfile.status === "PROCESSING") {
-        color = 'green';
+        color = 'yellow';
     }
     else if (dataProfile.status === "DONE") {
-        color = 'yellow';
+        color = 'green';
     }
     else if (dataProfile.status === "ERROR") {
         color = 'red';

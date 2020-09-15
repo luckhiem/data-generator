@@ -38,12 +38,12 @@ const Dashboard = () => {
             render: (text) => {
                 if (text === "PROCESSING") {
                     return (
-                        <Tag color={'green'} key={text}>{text}</Tag>
+                        <Tag color={'yellow'} key={text}>{text}</Tag>
                     )
                 }
                 if (text === "DONE") {
                     return (
-                        <Tag color={'yellow'} key={text}>{text}</Tag>
+                        <Tag color={'green'} key={text}>{text}</Tag>
                     )
                 }
                 if (text === "ERROR") {
