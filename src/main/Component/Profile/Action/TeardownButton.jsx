@@ -49,7 +49,7 @@ const TeardownButton = (rowProfileId) => {
                     profiles.forEach((item, i) => {
                         if (rowProfileId.rowProfileId === item.profileId) {
                             newProfileRes[i].status = response.status;
-                            newProfileRes[i].config = null;
+                            newProfileRes[i].config = response.config;
                             newProfileRes[i].log = response.log;
                         }
                     });
