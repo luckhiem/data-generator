@@ -95,6 +95,9 @@ ipcMain.on('request-setup', async (event, arg) => {
 
     }
     const results = await server.prepareTestData.setup(config);
+    if(results.logger.error){
+      await event.reply('reply-request-setup', { status: 'ERROR', log: results.logger });
+    }
     await event.reply('reply-request-setup', { status: 'DONE', config: results.configObj, log: results.logger });
     return event;
   } catch (err) {
