@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
-import { Table } from 'antd';
+import { Table, Space, Button } from 'antd';
 import { HistoryContext } from '../../Layout/app';
 import { Link } from 'react-router-dom';
+
 
 const Operation = () => {
     const { history, setHistory } = useContext(HistoryContext);
@@ -40,6 +41,13 @@ const Operation = () => {
         },
     ];
 
+    const removeHistory = () => {
+        const result = [];
+        window.localStorage.setItem('history', JSON.stringify(result));
+        setHistory(result);
+    };
+
+
     useEffect(() => {
         let historyCopy = [...history];
         historyCopy = history.map((history, i) => {
@@ -50,7 +58,12 @@ const Operation = () => {
     }, [history])
 
     return (
-        <Table columns={columns} dataSource={newHistory} />
+        <>
+            <Space style={{ marginBottom: 16 }}>
+                <Button type='primary' onClick={() => { removeHistory() }}>Clear History</Button>
+            </Space>
+            <Table columns={columns} dataSource={newHistory} />
+        </>
     )
 }
 export default Operation;
