@@ -7,7 +7,6 @@ import { Layout, Menu, Row, Col } from 'antd';
 import SettingProfile from '../Component/Header/ProfileAdd';
 import Dashboard from '../Component/Profile/Dashboard/Dashboard';
 import Operation from '../Component/Operation/Operation';
-import Status from '../Component/Status/Status';
 import Profile from '../Component/Profile/ProfileDetail/Profile';
 
 
@@ -63,10 +62,6 @@ const App = () => {
                       Operation
                     <Link to={"/Operation/"} />
                     </Menu.Item>
-                    <Menu.Item key="#/Status/">
-                      Status
-                    <Link to={"/Status/"} />
-                    </Menu.Item>
                   </Menu>
                 </Col>
                 <Col span={4}>
@@ -79,7 +74,6 @@ const App = () => {
                 <Switch>
                   <Route exact path="/" component={Dashboard}></Route>
                   <Route path="/Operation/" component={Operation}></Route>
-                  <Route path="/Status/" component={Status}></Route>
                   <Route path="/Profile/" component={Profile}></Route>
                 </Switch>
               </div>
