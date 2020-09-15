@@ -67,11 +67,11 @@ ipcMain.on('request-teardown', async (event, arg) => {
     console.log('request-teardown', config)
     console.log('request-teardown', configData)
     const results = await server.teardownTestData.teardown(config, configData);
-    await event.reply('reply-request-teardown', { status: 'DONE'});
+    await event.reply('reply-request-teardown', { status: 'DONE' });
     return event;
   } catch (err) {
     console.log(err)
-    event.reply('reply-request-teardown', { status: err });
+    event.reply('reply-request-teardown', { status: 'ERROR', log: { error: err.toString() } });
   }
 })
 
@@ -97,10 +97,10 @@ ipcMain.on('request-setup', async (event, arg) => {
 
     }
     const results = await server.prepareTestData.setup(config);
-    await event.reply('reply-request-setup', { status: 'DONE', config: results.configObj, log: results.logger});
+    await event.reply('reply-request-setup', { status: 'DONE', config: results.configObj, log: results.logger });
     return event;
   } catch (err) {
     console.log(err)
-    event.reply('reply-request-setup', { status: err });
+    event.reply('reply-request-setup', { status: 'ERROR', log: { error: err.toString() } });
   }
 });
