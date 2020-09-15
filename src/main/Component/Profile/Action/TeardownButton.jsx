@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { ProfileContext } from '../../../Layout/app';
+import { ProfileContext, HistoryContext } from '../../../Layout/app';
 import { ipcRenderer } from 'electron';
 import { Button } from 'antd';
 
 const TeardownButton = (rowProfileId) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
+    const { history, setHistory } = useContext(HistoryContext);
+    let newHistory = [...history];
+    let timeRunning = new Date().toLocaleString();
+
     return (
         <Button
             key="3"
@@ -19,6 +23,13 @@ const TeardownButton = (rowProfileId) => {
                     password: '',
                     config: ''
 
+                }
+                const historyValue = {
+                    time: '',
+                    status: '',
+                    profileId: '',
+                    profileName: '',
+                    operation: 'Teardown data'
                 }
                 const newProfile = [...profiles];
                 profiles.forEach((item, i) => {
@@ -43,7 +54,14 @@ const TeardownButton = (rowProfileId) => {
                         }
                     });
                     setProfiles(newProfileRes);
+                    historyValue.status = response.status;
+                    historyValue.profileId = rowProfileId.rowProfileId;
+                    historyValue.profileName = newProfile[index].name;
+                    historyValue.time = timeRunning;
+                    newHistory = [...history, historyValue];
+                    setHistory(newHistory);
                     window.localStorage.setItem('profiles', JSON.stringify(newProfileRes));
+                    window.localStorage.setItem('history', JSON.stringify(newHistory));
                     ipcRenderer.removeListener('reply-request-teardown', listener);
                 };
                 ipcRenderer.on('reply-request-teardown', listener);

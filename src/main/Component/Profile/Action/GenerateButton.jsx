@@ -7,6 +7,7 @@ const GenerateButton = (rowProfileId) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const { history, setHistory } = useContext(HistoryContext);
     let newHistory = [...history];
+    let timeRunning = new Date().toLocaleString();
 
     return (
         <Button
@@ -44,6 +45,7 @@ const GenerateButton = (rowProfileId) => {
                 const listener = (event, response) => {
                     const newProfileRes = [...profiles];
                     const historyValue = {
+                        time: '',
                         status: '',
                         profileId: '',
                         profileName: '',
@@ -59,6 +61,7 @@ const GenerateButton = (rowProfileId) => {
                     historyValue.status = response.status;
                     historyValue.profileId = rowProfileId.rowProfileId;
                     historyValue.profileName = newProfile[index].name;
+                    historyValue.time = timeRunning;
                     newHistory = [...history, historyValue];
                     setProfiles(newProfileRes);
                     setHistory(newHistory);

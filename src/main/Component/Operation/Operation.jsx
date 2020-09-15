@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import { Table } from 'antd';
-import { HistoryContext } from '../../Layout/app'
-
+import { HistoryContext } from '../../Layout/app';
+import { Link } from 'react-router-dom';
 
 const Operation = () => {
     const { history, setHistory } = useContext(HistoryContext);
@@ -18,7 +18,10 @@ const Operation = () => {
             title: 'Profile ID',
             dataIndex: 'profileId',
             key: 'profileId',
-            render: text => <a>{text}</a>,
+            render: (text, row) => (
+                <Link to={"/Profile/" + row.profileId} onClick={() => {
+                }}>{text}</Link>
+            )
         },
         {
             title: 'Profile Name',
@@ -45,8 +48,6 @@ const Operation = () => {
         });
         setNewHistory(historyCopy);
     }, [history])
-
-    console.log('history', history)
 
     return (
         <Table columns={columns} dataSource={newHistory} />
