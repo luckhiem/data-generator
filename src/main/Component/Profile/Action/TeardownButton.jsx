@@ -50,7 +50,7 @@ const TeardownButton = (rowProfileId) => {
                         if (rowProfileId.rowProfileId === item.profileId) {
                             newProfileRes[i].status = response.status;
                             newProfileRes[i].config = null;
-                            newProfileRes[i].log = null;
+                            newProfileRes[i].log = response.log;
                         }
                     });
                     setProfiles(newProfileRes);
