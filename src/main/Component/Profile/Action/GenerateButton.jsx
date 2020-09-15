@@ -7,7 +7,6 @@ const GenerateButton = (rowProfileId) => {
     const { profiles, setProfiles } = useContext(ProfileContext);
     const { history, setHistory } = useContext(HistoryContext);
     let newHistory = [...history];
-    console.log('newHistory', newHistory)
 
     return (
         <Button
@@ -60,9 +59,9 @@ const GenerateButton = (rowProfileId) => {
                     historyValue.status = response.status;
                     historyValue.profileId = rowProfileId.rowProfileId;
                     historyValue.profileName = newProfile[index].name;
-                    newHistory = [...history, historyValue]
-                    console.log('newHistory1', newHistory)
-                    setHistory(newHistory)
+                    newHistory = [...history, historyValue];
+                    setProfiles(newProfileRes);
+                    setHistory(newHistory);
                     window.localStorage.setItem('profiles', JSON.stringify(newProfileRes));
                     window.localStorage.setItem('history', JSON.stringify(newHistory));
                     ipcRenderer.removeListener('reply-request-setup', listener);
