@@ -13,6 +13,13 @@ import Profile from '../Component/Profile/ProfileDetail/Profile';
 
 const { Header, Content, Footer } = Layout;
 
+const HistoryContext = createContext({
+  history: [],
+  setHistory: () => {
+    // Default setProfiles function for ProfileContext
+  }
+});
+
 const ProfileContext = createContext({
   profiles: [],
   setProfiles: () => {
@@ -20,21 +27,28 @@ const ProfileContext = createContext({
   }
 });
 let initProfiles = [];
+let initHistory = []
+const storageHistory = window.localStorage.getItem('history');
 const storageProfile = window.localStorage.getItem('profiles');
 
 if (storageProfile !== null) {
   initProfiles = JSON.parse(storageProfile);
 }
+if (storageHistory !== null) {
+  initHistory = JSON.parse(storageHistory);
+}
 
-console.log('storageProfile', JSON.parse(storageProfile))
+console.log('storageHistory', JSON.parse(storageHistory))
 
 const App = () => {
   const [profileList, setProfileList] = useState(initProfiles);
+  const [historyList, setHistoryList] = useState(initHistory);
   const hash = window.location.hash.toString();
 
   return (
-      <Router>
-        <ProfileContext.Provider value={{ profiles: profileList, setProfiles: setProfileList }} >
+    <Router>
+      <ProfileContext.Provider value={{ profiles: profileList, setProfiles: setProfileList }} >
+        <HistoryContext.Provider value={{ history: historyList, setHistory: setHistoryList }} >
           <Layout className="layout">
             <Header>
               <Row>
@@ -72,9 +86,10 @@ const App = () => {
             </Content>
             <Footer style={{ textAlign: 'center' }}>Design By Khiem Luc</Footer>
           </Layout>
-        </ProfileContext.Provider>
-      </Router>
+        </HistoryContext.Provider>
+      </ProfileContext.Provider>
+    </Router>
   )
 }
-export { ProfileContext };
+export { ProfileContext, HistoryContext };
 export default hot(App);

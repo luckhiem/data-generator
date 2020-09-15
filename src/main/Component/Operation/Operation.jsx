@@ -1,9 +1,12 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
 import { Table } from 'antd';
+import { HistoryContext } from '../../Layout/app'
+
 
 const Operation = () => {
-    const [mode, setMode] = useState('right');
+    const { history, setHistory } = useContext(HistoryContext);
+    const [newHistory, setNewHistory] = useState();
 
     const columns = [
         {
@@ -13,8 +16,8 @@ const Operation = () => {
         },
         {
             title: 'Profile ID',
-            dataIndex: 'PID',
-            key: 'PID',
+            dataIndex: 'profileId',
+            key: 'profileId',
             render: text => <a>{text}</a>,
         },
         {
@@ -27,20 +30,26 @@ const Operation = () => {
             dataIndex: 'operation',
             key: 'operation',
         },
+        {
+            title: 'Status',
+            dataIndex: 'status',
+            key: 'status',
+        },
     ];
 
-    const data = [
-        {
-            key: '1',
-            time: '29-03-1995',
-            PID: 'PID-123456',
-            profileName: 'John Brown',
-            operation: 'Generate data',
-        }
-    ];
+    useEffect(() => {
+        let historyCopy = [...history];
+        historyCopy = history.map((history, i) => {
+            const newHistory = { ...history, key: i };
+            return newHistory;
+        });
+        setNewHistory(historyCopy);
+    }, [history])
+
+    console.log('history', history)
 
     return (
-        <Table columns={columns} dataSource={data} />
+        <Table columns={columns} dataSource={newHistory} />
     )
 }
 export default Operation;

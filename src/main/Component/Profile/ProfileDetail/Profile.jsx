@@ -46,6 +46,9 @@ const Profile = () => {
     }
     else if (dataProfile.status === "DONE") {
         color = 'yellow';
+    }
+    else if (dataProfile.status === "ERROR") {
+        color = 'red';
     } else {
         color = 'blue';
     }

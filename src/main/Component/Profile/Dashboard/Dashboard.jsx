@@ -46,6 +46,11 @@ const Dashboard = () => {
                         <Tag color={'yellow'} key={text}>{text}</Tag>
                     )
                 }
+                if (text === "ERROR") {
+                    return (
+                        <Tag color={'red'} key={text}>{text}</Tag>
+                    )
+                }
                 return (
                     <Tag color={'blue'} key={text}>{text}</Tag>
                 )
