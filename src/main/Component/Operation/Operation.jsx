@@ -60,7 +60,7 @@ const Operation = () => {
     return (
         <>
             <Space style={{ marginBottom: 16 }}>
-                <Button type='primary' onClick={() => { removeHistory() }}>Clear History</Button>
+                <Button type='default' onClick={() => { removeHistory() }}>Clear History</Button>
             </Space>
             <Table columns={columns} dataSource={newHistory} />
         </>

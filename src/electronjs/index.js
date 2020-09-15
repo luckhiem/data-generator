@@ -64,8 +64,6 @@ ipcMain.on('request-teardown', async (event, arg) => {
     }
 
     const configData = arg.config
-    console.log('request-teardown', config)
-    console.log('request-teardown', configData)
     const results = await server.teardownTestData.teardown(config, configData);
     await event.reply('reply-request-teardown', { status: 'DONE' });
     return event;
